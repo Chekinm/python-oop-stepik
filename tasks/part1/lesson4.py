@@ -70,25 +70,61 @@
 # data, result = sr.readlines()
 
 
-# task 9 
+# # task 9 
 
-import sys
+# import sys
 
-# программу не менять, только добавить два метода
-lst_in = list(map(str.strip, sys.stdin.readlines()))  # считывание списка строк из входного потока
+# # программу не менять, только добавить два метода
+# lst_in = list(map(str.strip, sys.stdin.readlines()))  # считывание списка строк из входного потока
 
 
-class DataBase:
-    lst_data = []
-    FIELDS = ('id', 'name', 'old', 'salary')
+# class DataBase:
+#     lst_data = []
+#     FIELDS = ('id', 'name', 'old', 'salary')
 
-    def insert(self, data):
-        for line in data:
-            person_data_dict = {field: value for field, value in zip(self.FIELDS, line.split())}
-            DataBase.lst_data.append(person_data_dict)
+#     def insert(self, data):
+#         for line in data:
+#             person_data_dict = {field: value for field, value in zip(self.FIELDS, line.split())}
+#             DataBase.lst_data.append(person_data_dict)
 
-    def select(self, a, b):
-        return DataBase.lst_data[a: max(b, len(DataBase.lst_data)) + 1]
+#     def select(self, a, b):
+#         return DataBase.lst_data[a: max(b, len(DataBase.lst_data)) + 1]
 
-db = DataBase()
-db.insert(lst_in)
+# db = DataBase()
+# db.insert(lst_in)
+
+# task 10
+
+class Translator:
+    def add(self, eng, rus):
+        if 'tr' not in self.__dict__:
+            self.tr = {}
+
+        self.tr.setdefault(eng, [])
+        if rus not in self.tr[eng]:
+            self.tr[eng].append(rus)
+        
+    def remove(self, eng):
+        self.tr.setdefault(eng, [])
+        self.tr.pop(eng)
+
+    def translate(self, eng):
+        # return self.tr[eng]
+        return self.tr.get(eng, [])
+
+
+tr = Translator()
+
+tr.add('tree', 'дерево')
+tr.add('car', 'машина')
+tr.add('car', 'автомобиль')
+tr.add('leaf', 'лист')
+tr.add('river', 'река')
+tr.add('go', 'идти')
+tr.add('go', 'ехать')
+tr.add('go', 'ходить')
+tr.add('milk', 'молоко')
+
+tr.remove('car')
+print(*tr.translate('go'))
+print(*tr.translate('go11'))
