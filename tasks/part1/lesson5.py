@@ -269,3 +269,58 @@
 # cart.add(c)
 
 # print(cart.get_list())
+
+# task 9
+
+# 
+
+# # task 10
+
+# from random import randint
+
+
+# class Cell:
+#     def __init__(self, mine, around_mines=0, fl_open=False):
+#         self.mine = mine
+#         self.around_mines = around_mines
+#         self.fl_open = fl_open
+
+#     def __str__(self):
+#         if not self.fl_open:
+#             return '#'
+#         if self.mine:
+#             return '*'
+#         return f'{self.around_mines}'
+
+
+# class GamePole:
+
+#     def __init__(self, n, m):
+#         self.size = n
+#         self.mines = m
+#         self.pole = [[Cell(False) for _ in range(self.size)] for _ in range(self.size)]
+#         self.init()
+
+#     def _set_around(self, x, y):
+#         for _x in range(x - 1, x + 2, 1):
+#             for _y in range(y - 1, y + 2, 1):
+#                 if 0 <= _x < self.size and 0 <= _y < self.size:
+#                     self.pole[_x][_y].around_mines += 1
+
+#     def init(self):
+#         mines = self.mines
+#         while mines > 0:
+#             x = randint(0, self.size - 1)
+#             y = randint(0, self.size - 1)
+#             if not self.pole[x][y].mine:
+#                 self.pole[x][y].mine = True
+#                 self._set_around(x, y)
+#                 mines -= 1
+
+#     def show(self):
+#         for _ in range(self.size):
+#             print(*self.pole[_])
+
+
+# gp = GamePole(10, 12)
+# gp.show()
