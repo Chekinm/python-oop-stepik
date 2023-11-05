@@ -163,3 +163,44 @@
 # gr.show_graph()
 # gr.set_show(False)
 # gr.show_table()
+
+# # task 7
+
+# class CPU:
+#     def __init__(self, name, fr):
+#         self.name = name
+#         self.fr = fr
+
+
+# class Memory:
+#     def __init__(self, name, volume):
+#         self.name = name
+#         self.volume = volume
+
+
+# class MotherBoard:
+
+#     def __init__(self, name, cpu, *mem_slots, total_mem_slots=4):
+#         self.name = name
+#         self.cpu = cpu
+#         self.mem_slots = list(mem_slots)
+#         self.total_mem_slots = total_mem_slots
+
+#     @property
+#     def memory_description(self):
+#         mem_desc_list = [f'{m.name} - {m.volume}' for m in self.mem_slots]
+#         return '; '.join(mem_desc_list)
+
+#     def get_config(self):
+#         return [f'Материнская плата: {self.name}',
+#                 f'Центральный процессор: {cpu.name}, {cpu.fr}',
+#                 f'Слотов памяти: {self.total_mem_slots}',
+#                 f'Память: {self.memory_description}',
+#                 ]
+
+
+# cpu = CPU('my_cpu', 100)
+# mem1 = Memory('mem1', 10)
+# mem2 = Memory('mem2', 20)
+
+# mb = MotherBoard('my_motherboard', cpu, mem1, mem2)
