@@ -159,3 +159,67 @@
 #         return len(self.apps_dict)
         
 # task 11
+
+class Message:
+
+    def __init__(self, text, fl_like=False):
+        self.id = id(self)
+        self.text = text
+        self.fl_like = fl_like
+
+    @property
+    def set_like(self):
+        self.fl_like = not self.fl_like
+
+    def __str__(self):
+        return f'id={self.id}, Text: "{self.text}", liked={self.fl_like}.'
+
+
+class Viber:
+    messages = {}
+
+    @classmethod
+    def add_message(cls, msg):
+        cls.messages.setdefault(msg.id, msg)
+
+    @classmethod
+    def remove_message(cls, msg):
+        if msg.id in cls.messages:
+            cls.messages.pop(msg.id)
+        else:
+            raise ValueError("Message doesn't exist")
+
+    @classmethod
+    def set_like(cls, msg):
+        if msg.id in cls.messages:
+            cls.messages[msg.id].set_like
+        else:
+            raise ValueError("Message doesn't exist")
+
+    @classmethod
+    def show_last_message(cls, number):
+        number = min(number, len(cls.messages))
+        for msg_id in list(cls.messages.keys())[-number:]:
+            print(cls.messages[msg_id])
+
+    @classmethod
+    def total_messages(cls):
+        return len(cls.messages)
+
+
+msg = Message("Всем привет!")
+Viber.add_message(msg)
+Viber.add_message(Message("Это курс по Python ООП."))
+Viber.add_message(Message("Что вы о нем думаете?"))
+Viber.set_like(msg)
+Viber.show_last_message(1)
+print('\n')
+Viber.show_last_message(2)
+print('\n')
+Viber.show_last_message(3)
+print('\n')
+
+Viber.remove_message(msg)
+
+Viber.show_last_message(2)
+print('\n')
