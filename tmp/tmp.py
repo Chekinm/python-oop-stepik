@@ -30,12 +30,13 @@
 # print(move_zeros_to_end(a))
 #
 
-from dataclasses import dataclass
+class Test:
 
-@dataclass
-class Data:
-    data: str
-    ip: int
+    def __init__(self, x):
+        self.set_x(x)
 
-Data('sdf', 20)
+    def set_x(self, x):
+        self.x = x
+t = Test(5)
+print(t.x)
 
