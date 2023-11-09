@@ -112,4 +112,3 @@ try:
     print(lst)
 except IndexError:
     print('Has trtied to pop for emtpy list')
-
