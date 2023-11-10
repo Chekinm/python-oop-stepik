@@ -141,96 +141,158 @@
 
 # rect = Rectangle(Point(0, 0), Point(20, 34))
 
-# task 9 
+# # task 9 
 
-class ObjList:
-    def __init__(self, data, prevobj=None, nextobj=None):
-        self.set_next(nextobj)
-        self.set_prev(prevobj)
-        self.set_data(data)
+# class ObjList:
+#     def __init__(self, data, prevobj=None, nextobj=None):
+#         self.set_next(nextobj)
+#         self.set_prev(prevobj)
+#         self.set_data(data)
 
-    def set_next(self, obj):
-        self.__next = obj
+#     def set_next(self, obj):
+#         self.__next = obj
     
-    def set_prev(self, obj):
-        self.__prev = obj
+#     def set_prev(self, obj):
+#         self.__prev = obj
 
-    def set_data(self, data):
-        self.__data = data
+#     def set_data(self, data):
+#         self.__data = data
 
-    def get_next(self):
-        return self.__next
+#     def get_next(self):
+#         return self.__next
     
-    def get_prev(self):
-        return self.__prev
+#     def get_prev(self):
+#         return self.__prev
 
-    def get_data(self):
-        return self.__data
+#     def get_data(self):
+#         return self.__data
 
-    # def __repr__(self):
-    #     return f'{self.get_data()}, prev- {self.get_prev()}, next - {self.get_next()}'
+#     # def __repr__(self):
+#     #     return f'{self.get_data()}, prev- {self.get_prev()}, next - {self.get_next()}'
 
-class LinkedList:
+# class LinkedList:
 
-    def __init__(self, head: ObjList = None, tail: ObjList = None) -> None:
-        self.head = head
-        self.tail = tail
+#     def __init__(self, head: ObjList = None, tail: ObjList = None) -> None:
+#         self.head = head
+#         self.tail = tail
 
-    def add_obj(self, obj):
-        if self.tail:
-            obj.set_prev(self.tail)
-            self.tail.set_next(obj)
-            self.tail = obj
-        else:
-            self.head = self.tail = obj
+#     def add_obj(self, obj):
+#         if self.tail:
+#             obj.set_prev(self.tail)
+#             self.tail.set_next(obj)
+#             self.tail = obj
+#         else:
+#             self.head = self.tail = obj
 
-    def remove_obj(self):
-        if self.tail:
-            self.tail = self.tail.get_prev()
-            if self.tail:
-                self.tail.set_next(None)
-            else:
-                self.head = None
+#     def remove_obj(self):
+#         if self.tail:
+#             self.tail = self.tail.get_prev()
+#             if self.tail:
+#                 self.tail.set_next(None)
+#             else:
+#                 self.head = None
         
 
 
-    def get_data(self):
-        current_head = self.head
-        data_list = []
-        while current_head:
-            data_list.append(current_head.get_data())   
-            current_head = current_head.get_next()
-        return data_list
+#     def get_data(self):
+#         current_head = self.head
+#         data_list = []
+#         while current_head:
+#             data_list.append(current_head.get_data())   
+#             current_head = current_head.get_next()
+#         return data_list
 
 
-lst = LinkedList()
-obj1 = ObjList("данные 1")
-print(obj1)
-lst.add_obj(obj1)
-print(lst.get_data(), lst.head, lst.tail)
+# lst = LinkedList()
+# obj1 = ObjList("данные 1")
+# print(obj1)
+# lst.add_obj(obj1)
+# print(lst.get_data(), lst.head, lst.tail)
 
-obj2 = ObjList("данные 2")
-print(obj2)
-lst.add_obj(obj2)
-print(lst.get_data(), lst.head, lst.tail)
+# obj2 = ObjList("данные 2")
+# print(obj2)
+# lst.add_obj(obj2)
+# print(lst.get_data(), lst.head, lst.tail)
 
 
 
-lst.add_obj(ObjList("данные 3"))
-res = lst.get_data()  
-print(res)
+# lst.add_obj(ObjList("данные 3"))
+# res = lst.get_data()  
+# print(res)
 
-lst.remove_obj()
+# lst.remove_obj()
 
-res = lst.get_data()  
-print(res)
+# res = lst.get_data()  
+# print(res)
 
-lst.remove_obj()
+# lst.remove_obj()
 
-res = lst.get_data()  
-print(res)
+# res = lst.get_data()  
+# print(res)
 
-lst.remove_obj()
+# lst.remove_obj()
 
-res = lst.get_data()  
-print(res)
+# res = lst.get_data()  
+# print(res)
+
+# task 10
+
+from random import choices, randint
+from string import ascii_letters, digits
+
+
+class EmailValidator:
+
+    _POOL = ascii_letters + digits + '.' + '_'
+
+    def __new__(cls):
+        return None
+
+    @classmethod
+    def get_random_email(cls):
+        
+        name = ''.join(choices(cls._POOL, k=(randint(1, 100))))
+        return name + '@gmail.com'
+
+    @classmethod
+    def check_email(cls, email):
+        if not cls.__is_email_str(email):
+            return False
+        
+        if set(email) < set(cls._POOL):
+            return False
+        
+        parts = email.split("@")
+        if len(parts) != 2:
+            return False
+        
+        name, domain = parts
+        if not (0 < len(name) <= 100 and 3 <= len(domain) <= 50):
+            return False
+        
+        if "." not in domain or ".." in email:
+            return False
+        
+        return True
+
+    @staticmethod
+    def __is_email_str(email):
+        return isinstance(email, str)
+
+
+em = EmailValidator()
+email = EmailValidator.get_random_email()
+print(isinstance(email, str))
+print(email)
+print(EmailValidator.check_email(email))
+
+assert EmailValidator.check_email("sc_lib@list.ru") == True 
+assert EmailValidator.check_email("sc_lib@list_ru") == False 
+assert EmailValidator.check_email("sc@lib@list_ru") == False 
+assert EmailValidator.check_email("sc.lib@list_ru") == False 
+assert EmailValidator.check_email("sclib@list.ru") == True 
+assert EmailValidator.check_email("sc.lib@listru") == False 
+assert EmailValidator.check_email("sc..lib@list.ru") == False
+
+# m = EmailValidator.get_random_email()
+print(EmailValidator.check_email("sc..lib@list.ru"))
