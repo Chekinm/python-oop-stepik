@@ -30,13 +30,20 @@
 # print(move_zeros_to_end(a))
 #
 
-class Test:
+# class Test:
 
-    def __init__(self, x):
-        self.set_x(x)
+#     def __init__(self, x):
+#         self.set_x(x)
 
-    def set_x(self, x):
-        self.x = x
-t = Test(5)
-print(t.x)
+#     def set_x(self, x):
+#         self.x = x
+# t = Test(5)
+# print(t.x)
+
+from string import ascii_letters, digits
+from random import choices
+
+a = choices(ascii_letters, k=200)
+
+print(a)
 
