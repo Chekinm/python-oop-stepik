@@ -165,5 +165,49 @@
 # for p in shop.goods:
 #     print(f"{p.name}: {p.price}")
 
+# # task 9
 
+
+# class Thing:
+
+#     def __init__(self, name, weight):
+#         self.name = name
+#         self.weight = weight
+
+
+# class Bag:
+
+#     def __init__(self, max_weight):
+#         self.max_weight = max_weight
+#         self.__things = []
+#         self.__current_weight = 0
+
+#     @property
+#     def things(self):
+#         return self.__things
+
+#     def add_thing(self, thing):
+#         if thing.weight + self.__current_weight <= self.max_weight:
+#             self.__current_weight += thing.weight
+#             self.__things.append(thing)
+
+#     def remove_thing(self, idx):
+#         try:
+#             thing = self.__things[idx]
+#             self.__things.pop(idx)
+#             self.__current_weight -= thing.weight
+#         except IndexError:
+#             print('trying to remove unexistent things')
+
+#     def get_total_weight(self):
+#         return self.__current_weight
     
+
+# bag = Bag(1000)
+# bag.add_thing(Thing("Книга по Python", 100))
+# bag.add_thing(Thing("Котелок", 500))
+# bag.add_thing(Thing("Спички", 20))
+# bag.add_thing(Thing("Бумага", 100))
+# w = bag.get_total_weight()
+# for t in bag.things:
+#     print(f"{t.name}: {t.weight}")
