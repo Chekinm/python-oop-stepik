@@ -71,3 +71,48 @@
 # acceptor = ImageFileAcceptor(('jpg', 'bmp', 'jpeg'))
 # image_filenames = filter(acceptor, filenames)
 # print(list(image_filenames))  # ["boat.jpg", "ava.jpg", "forest.jpeg"]
+
+# task 4
+
+
+class LengthValidator:
+    def __init__(self, min_length, max_length):
+        self.min_length = min_length
+        self.max_length = max_length
+
+    def __call__(self, string):
+        if self.min_length <= len(string) <= self.max_length:
+            return True
+        return False
+
+
+class CharsValidator:
+    def __init__(self, chars):
+        self.set_chars = set(chars)
+
+    def __call__(self, string):
+        if set(string).issubset(self.set_chars):
+            return True
+        return False
+
+
+class LoginForm:
+    def __init__(self, name, validators=None):
+        self.name = name
+        self.validators = validators
+        self.login = ""
+        self.password = ""
+        
+    def post(self, request):
+        self.login = request.get('login', "")
+        self.password = request.get('password', "")
+        
+    def is_validate(self):
+        if not self.validators:
+            return True
+        
+        for v in self.validators:
+            if not v(self.login) or not v(self.password):
+                return False
+            
+        return True
