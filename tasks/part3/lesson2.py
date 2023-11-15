@@ -50,3 +50,24 @@
 
 # print(rnd1.__dict__)
 # print(rnd2.__dict__)
+
+# # task 3
+
+
+# class ImageFileAcceptor:
+
+#     def __init__(self, extensions: tuple[str]) -> None:
+#         self.extensions = extensions
+
+#     def __call__(self, file_name):
+#         file_ext = file_name.split('.')[-1]
+#         for ext in self.extensions:
+#             if ext == file_ext:
+#                 return True
+#         return False
+
+
+# filenames = ["", "web.png", "text.txt", "python.doc", "ava.jpg", "forest.jpeg", "eq_1.png", "eq_2.png"]
+# acceptor = ImageFileAcceptor(('jpg', 'bmp', 'jpeg'))
+# image_filenames = filter(acceptor, filenames)
+# print(list(image_filenames))  # ["boat.jpg", "ava.jpg", "forest.jpeg"]
