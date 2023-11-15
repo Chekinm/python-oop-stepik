@@ -123,77 +123,122 @@
 
 # print(book.__init__.__annotations__['weight'])
 
-# task 5
+# # task 5
 
-from typing import Any
+# from typing import Any
 
 
-class LessonItem:
-    def __init__(self,
-                 title: str,
-                 practices: int,
-                 duration: int,
-                 ):
-        self.title = title
-        self.practices = practices
-        self.duration = duration
+# class LessonItem:
+#     def __init__(self,
+#                  title: str,
+#                  practices: int,
+#                  duration: int,
+#                  ):
+#         self.title = title
+#         self.practices = practices
+#         self.duration = duration
 
-    def __setattr__(self, attr: str, value: Any) -> None:
-        if (not isinstance(value, self.__init__.__annotations__[attr]) or
-                (self.__init__.__annotations__[attr] == int and value < 0)):
-            raise TypeError("Неверный тип присваиваемых данных.")
-        super().__setattr__(attr, value)
+#     def __setattr__(self, attr: str, value: Any) -> None:
+#         if (not isinstance(value, self.__init__.__annotations__[attr]) or
+#                 (self.__init__.__annotations__[attr] == int and value < 0)):
+#             raise TypeError("Неверный тип присваиваемых данных.")
+#         super().__setattr__(attr, value)
 
-    def __delattr__(self, attr: str) -> None:
-        if attr in self.__init__.__annotations__:
-            raise AttributeError(f"Атрибут {attr} aудалять запрещено.")
-        super().__delattr__(attr)
+#     def __delattr__(self, attr: str) -> None:
+#         if attr in self.__init__.__annotations__:
+#             raise AttributeError(f"Атрибут {attr} aудалять запрещено.")
+#         super().__delattr__(attr)
 
-    def __getattr__(self, attr: str) -> bool:
-        return False
+#     def __getattr__(self, attr: str) -> bool:
+#         return False
     
-    def __str__(self):
-        return f'{self.title}. Duration {self.duration}, practices: {self.practices}'
+#     def __str__(self):
+#         return f'{self.title}. Duration {self.duration}, practices: {self.practices}'
 
 
-class Module:
+# class Module:
 
-    def __init__(self, name) -> None:
-        self.name = name
-        self.lessons = []
+#     def __init__(self, name) -> None:
+#         self.name = name
+#         self.lessons = []
 
-    def add_lesson(self, lesson: LessonItem):
-        self.lessons.append(lesson)
+#     def add_lesson(self, lesson: LessonItem):
+#         self.lessons.append(lesson)
 
-    def remove_lesson(self, indx):
-        self.lessons.pop(indx)
-
-
-class Course:
-
-    def __init__(self, name) -> None:
-        self.name = name
-        self.modules = []
-
-    def add_module(self, module: Module):
-        self.modules.append(module)
-
-    def remove_module(self, indx):
-        self.modules.pop(indx)
+#     def remove_lesson(self, indx):
+#         self.lessons.pop(indx)
 
 
-course = Course("Python ООП")
-module_1 = Module("Часть первая")
-module_1.add_lesson(LessonItem("Урок 1", 7, 1000))
-module_1.add_lesson(LessonItem("Урок 2", 10, 1200))
-module_1.add_lesson(LessonItem("Урок 3", 5, 800))
-course.add_module(module_1)
-module_2 = Module("Часть вторая")
-module_2.add_lesson(LessonItem("Урок 1", 7, 1000))
-module_2.add_lesson(LessonItem("Урок 2", 10, 1200))
-course.add_module(module_2)
+# class Course:
 
-for module in course.modules:
-    for lesson in module.lessons:
-        print(f'{course.name}. {module.name}. {lesson}')
+#     def __init__(self, name) -> None:
+#         self.name = name
+#         self.modules = []
+
+#     def add_module(self, module: Module):
+#         self.modules.append(module)
+
+#     def remove_module(self, indx):
+#         self.modules.pop(indx)
+
+
+# course = Course("Python ООП")
+# module_1 = Module("Часть первая")
+# module_1.add_lesson(LessonItem("Урок 1", 7, 1000))
+# module_1.add_lesson(LessonItem("Урок 2", 10, 1200))
+# module_1.add_lesson(LessonItem("Урок 3", 5, 800))
+# course.add_module(module_1)
+# module_2 = Module("Часть вторая")
+# module_2.add_lesson(LessonItem("Урок 1", 7, 1000))
+# module_2.add_lesson(LessonItem("Урок 2", 10, 1200))
+# course.add_module(module_2)
+
+# for module in course.modules:
+#     for lesson in module.lessons:
+#         print(f'{course.name}. {module.name}. {lesson}')
     
+# # task 6
+
+# from typing import Any
+
+# class Picture:
+
+#     def __init__(self, name, author, descr) -> None:
+#         self.name = name
+#         self.author = author
+#         self.descr = descr
+
+
+# class Mummies:
+#     def __init__(self, name, location , descr):
+#         self.name = name
+#         self.location = location
+#         self.descr = descr
+
+
+# class Papyri:
+#     def __init__(self, name, date, descr):
+#         self.name = name
+#         self.date = date
+#         self.descr = descr
+
+
+# class Museum:
+
+#     def __init__(self, name):
+#         self.name = name
+#         self.exhibits = []
+
+#     def add_exhibit(self, obj):
+#         self.exhibits.append(obj)
+
+#     def remove_exhibit(self, obj):
+#         self.exhibits.remove(obj)
+
+#     def get_info_exhibit(self, indx):
+#         obj = self.exhibits[indx]
+#         return f"Описание экспоната {obj.name}: {obj.descr}"
+
+# p = Picture('myname', '2', 'dectr')
+# print(p.descr)
+
