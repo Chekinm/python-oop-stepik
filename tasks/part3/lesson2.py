@@ -75,44 +75,69 @@
 # task 4
 
 
-class LengthValidator:
-    def __init__(self, min_length, max_length):
-        self.min_length = min_length
-        self.max_length = max_length
+# class LengthValidator:
+#     def __init__(self, min_length, max_length):
+#         self.min_length = min_length
+#         self.max_length = max_length
 
-    def __call__(self, string):
-        if self.min_length <= len(string) <= self.max_length:
-            return True
-        return False
-
-
-class CharsValidator:
-    def __init__(self, chars):
-        self.set_chars = set(chars)
-
-    def __call__(self, string):
-        if set(string).issubset(self.set_chars):
-            return True
-        return False
+#     def __call__(self, string):
+#         if self.min_length <= len(string) <= self.max_length:
+#             return True
+#         return False
 
 
-class LoginForm:
-    def __init__(self, name, validators=None):
-        self.name = name
-        self.validators = validators
-        self.login = ""
-        self.password = ""
+# class CharsValidator:
+#     def __init__(self, chars):
+#         self.set_chars = set(chars)
+
+#     def __call__(self, string):
+#         if set(string).issubset(self.set_chars):
+#             return True
+#         return False
+
+
+# class LoginForm:
+#     def __init__(self, name, validators=None):
+#         self.name = name
+#         self.validators = validators
+#         self.login = ""
+#         self.password = ""
         
-    def post(self, request):
-        self.login = request.get('login', "")
-        self.password = request.get('password', "")
+#     def post(self, request):
+#         self.login = request.get('login', "")
+#         self.password = request.get('password', "")
         
-    def is_validate(self):
-        if not self.validators:
-            return True
+#     def is_validate(self):
+#         if not self.validators:
+#             return True
         
-        for v in self.validators:
-            if not v(self.login) or not v(self.password):
-                return False
+#         for v in self.validators:
+#             if not v(self.login) or not v(self.password):
+#                 return False
             
-        return True
+#         return True
+
+# # task 5
+# class DigitRetrieve:
+
+#     def __call__(self, string):
+#         if string.isnumeric():
+#             return int(string)
+#         elif string and string[0] == '-' and string[1:].isnumeric():
+#             return -1 * int(string[1:]) 
+#         return None
+
+# dg = DigitRetrieve()
+
+# d1 = dg("123,3")   # 123 (целое число)
+# d2 = dg("45.54")   # None (не целое число)
+# d3 = dg("-56")   # -56 (целое число)
+# d4 = dg("12fg")  # None (не целое число)
+# d5 = dg("abc")   # None (не целое число)
+
+# print(d1, d2, d3, d4,d5)
+
+
+# st = ["123.3", "abc", ".4", "0", "-5"]
+# digits = list(map(dg, st))  # [123, None, None, 0, -5]
+# print(digits)
