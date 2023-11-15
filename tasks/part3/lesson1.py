@@ -298,3 +298,73 @@
 # for a in sm.apps:
 #     print(a.name)
 
+
+# task 8
+
+# from typing import Any, Self
+
+
+# class Circle:
+
+#     # def __setattr__(self, __name: str, __value: Any) -> None:
+#     #     prefix = f'_{self.__class__.__name__}__'
+#     #     var_name = __name[len(prefix):]
+#     #     if var_name:
+#     #         if not isinstance(__value, self.__init__.__annotations__[var_name]):
+#     #             raise TypeError("Неверный тип присваиваемых данных.")
+#     #         elif var_name == 'radius' and __value < 0:
+#     #             pass
+
+#     def __setattr__(self, __name: str, __value: Any) -> None:
+#         print(__name, __value)
+#         if __name in ('_Circle__x', '_Circle__y', '_Circle__radius'):
+#             print('__ variable')
+#             if not isinstance(__value, (float, int)):
+#                 raise TypeError("Неверный тип присваиваемых данных.")
+#             elif __name == '_Circle__radius' and __value < 0:
+#                 print('negative radius')
+#                 return
+#         super().__setattr__(__name, __value)
+
+#     def __getattr__(self, __name:str) -> bool:
+#         return False
+
+#     def __init__(self,
+#                  x: float | int,
+#                  y: float | int,
+#                  radius: float | int):
+#         self.x = x
+#         self.y = y
+#         self.radius = radius
+
+#     @property
+#     def x(self: Self) -> int| float:
+#         return self.__x
+
+#     @x.setter
+#     def x(self, x: int | float) -> None:
+#         self.__x = x
+
+#     @property
+#     def y(self: Self) -> int| float:
+#         return self.__y
+
+#     @y.setter
+#     def y(self, y: int | float) -> None:
+#         self.__y = y
+
+#     @property
+#     def radius(self: Self) -> int | float:
+#         return self.__radius
+
+#     @radius.setter
+#     def radius(self, radius: int | float) -> None:
+#         self.__radius = radius
+
+
+
+# c = Circle(1,1, 22)
+# c.radius = -22
+# print(c.radius)
+
+
