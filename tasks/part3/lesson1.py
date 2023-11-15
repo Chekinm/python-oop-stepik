@@ -367,4 +367,106 @@
 # c.radius = -22
 # print(c.radius)
 
+# task 9
 
+# from typing import Any
+
+
+# class FloatValue:
+
+#     def __init__(self, __min, __max):
+#         self.__min = __min
+#         self.__max = __max
+
+#     def __set_name__(self, owner, name):
+#         self.name = '__' + name
+
+#     def __get__(self, instance, owner):
+#         return getattr(instance, self.name)
+
+#     def __set__(self, instance, value):
+#         if (isinstance(value, float) and
+#                 self.__min <= value <= self.__max):
+#             setattr(instance, self.name, value)
+#         else:
+#             return
+
+
+
+# class Dimensions:
+#     MIN_DIMENSION = 10
+#     MAX_DIMENSION = 1000
+#     a = FloatValue(MIN_DIMENSION, MAX_DIMENSION)
+#     b = FloatValue(MIN_DIMENSION, MAX_DIMENSION)
+#     c = FloatValue(MIN_DIMENSION, MAX_DIMENSION)
+
+#     def __setattr__(self, __name: str, __value: Any) -> None:
+#         if __name in ('MIN_DIMENSION','MAX_DIMENSION'):
+#             raise AttributeError("Менять атрибуты MIN_DIMENSION и MAX_DIMENSION запрещено.")
+#         super().__setattr__(__name, __value)
+
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+
+# task9 2 varianst
+
+# from typing import Any
+
+
+# class Dimensions:
+#     MIN_DIMENSION = 10
+#     MAX_DIMENSION = 1000
+
+
+#     def __setattr__(self, __name: str, __value: Any) -> None:
+#         if __name in ('MIN_DIMENSION','MAX_DIMENSION'):
+#             raise AttributeError("Менять атрибуты MIN_DIMENSION и MAX_DIMENSION запрещено.")
+#         super().__setattr__(__name, __value)
+
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+
+#     @property
+#     def a(self):
+#         return self.__a
+    
+#     @a.setter
+#     def a(self, value):
+#         if (isinstance(value, float) and
+#                 self.MIN_DIMENSION <= value < self.MAX_DIMENSION):
+#             self.__a = value
+
+#     @property
+#     def b(self):
+#         return self.__b
+    
+#     @b.setter
+#     def b(self, value):
+#         if (isinstance(value, float) and
+#                 self.MIN_DIMENSION <= value < self.MAX_DIMENSION):
+#             self.__b = value
+    
+#     @property
+#     def c(self):
+#         return self.__c
+    
+#     @c.setter
+#     def c(self, value):
+#         if (isinstance(value, float) and
+#                 self.MIN_DIMENSION <= value < self.MAX_DIMENSION):
+#             self.__c = value
+
+
+
+
+
+
+
+
+
+
+# task 10
