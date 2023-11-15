@@ -242,3 +242,59 @@
 # p = Picture('myname', '2', 'dectr')
 # print(p.descr)
 
+# task 7
+
+# from typing import Any, Union
+
+
+# class AppVK:
+
+#     def __init__(self):
+#         self.name = 'ВКонтакте'
+
+
+# class AppYouTube:
+
+#     def __init__(self, memory_max):
+#         self.name = 'YouTube'
+#         self.memory_max = memory_max
+
+
+# class AppPhone:
+
+#     def __init__(self, phone_list=None):
+#         self.name = 'Phone'
+#         if phone_list is None:
+#             self.phone_list = {}
+#         else:
+#             self.phone_list = phone_list.copy
+
+
+# class SmartPhone:
+    
+#     def __init__(self, model: str) -> Any:
+#         self.model = model
+#         self.apps_dict = {}
+#         self.apps = []
+
+#     def add_app(self, app: Union[AppVK, AppYouTube, AppPhone]) -> None:
+#         self.apps_dict.setdefault(type(app), app)
+#         self.apps = self.apps_dict.values()
+
+#     def remove_app(self, app: Union[AppVK, AppYouTube, AppPhone]) -> None:
+#         if app in self.apps_dict:
+#             self.apps_dict.pop(type(app))
+#             self.apps = self.apps_dict.values()
+
+#         else:
+#             raise ValueError(f'{app.name} is not istalled')
+
+
+# sm = SmartPhone("Honor 1.0")
+# sm.add_app(AppVK())
+# sm.add_app(AppVK())  # второй раз добавляться не должно
+
+# sm.add_app(AppYouTube(2048))
+# for a in sm.apps:
+#     print(a.name)
+
