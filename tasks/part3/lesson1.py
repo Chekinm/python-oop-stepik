@@ -461,12 +461,72 @@
 #             self.__c = value
 
 
+# # task 10
+
+# import time
+# from typing import Any
+
+
+# class Filter:
+
+#     def __setattr__(self, __name: str, __value: Any) -> None:
+#         if __name == 'date' and self.date_lock:
+#             return
+#         else:
+#             super().__setattr__(__name, __value)
+
+#     def __init__(self, date):
+#         self.date_lock = False
+#         self.date = date
+#         self.date_lock = True
+
+
+# class Mechanical(Filter):
+#     pass
+
+
+# class Aragon(Filter):
+#     pass
+
+
+# class Calcium(Filter):
+#     pass
+
+
+# class GeyserClassic:
+
+#     MAX_DATE_FILTER = 100 
+
+#     FILTER_TYPE_DICT = {1: Mechanical,
+#                         2: Aragon,
+#                         3: Calcium,
+#                         }
+
+#     def __init__(self, 
+#                  slot_1: Mechanical = None,
+#                  slot_2: Aragon = None,
+#                  slot_3: Calcium = None,
+#                  ):
+#         self.__slots_dict = {1: slot_1, 2: slot_2, 3: slot_3}
+
+#     def add_filter(self, slot_num, filter):
+
+#         if (type(filter) is self.FILTER_TYPE_DICT[slot_num] and
+#                 self.__slots_dict[slot_num] is None):
+#             self.__slots_dict[slot_num] = filter
+
+#     def remove_filter(self, slot_num):
+#         self.__slots_dict[slot_num] = None
+
+#     def get_filters(self):
+#         return tuple(self.__slots_dict[i] for i in range(1, 4))
+    
+#     def water_on(self):
+#         for filter in self.__slots_dict.values():
+#             if (filter is None or
+#                     time.time() - filter.date > self.MAX_DATE_FILTER):
+#                 return False
+#         return True
 
 
 
-
-
-
-
-
-# task 10
