@@ -19,3 +19,24 @@
 
 
 # print(b)
+
+# task 3
+
+class Model:
+
+    def __init__(self):
+        self.data = {}
+
+    def query(self, **kwargs):
+        self.data = kwargs
+
+    def __str__(self):
+        if self.data:
+            return f'Model: {", ".join(f"{key} = {value}" for key, value in self.data.items())}'
+
+        return 'Model'
+
+
+model = Model()
+model.query(a=1, b=2)
+print(model)
