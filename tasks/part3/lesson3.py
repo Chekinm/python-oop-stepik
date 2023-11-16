@@ -175,6 +175,46 @@
 # s = linked_lst(1) # s = Balakirev
 # print(s)
 
-# task 6
+# # task 6
+# from typing import Any
+# from math import sqrt
+
+
+# class Complex:
+
+#     def __setattr__(self, __name: str, __value: Any) -> None:
+#         if not isinstance(__value, (int, float)):
+#             raise ValueError("Неверный тип данных.") 
+#         else:
+#             super().__setattr__(__name, __value)
+
+#     def __init__(self, real, img):
+#         self.real = real
+#         self.img = img
+
+#     @property
+#     def real(self):
+#         return self.__real
+
+#     @real.setter
+#     def real(self, value):
+#         self.__real = value
+
+#     @property
+#     def img(self):
+#         return self.__img
+
+#     @img.setter
+#     def img(self, value):
+#         self.__img = value
+
+#     def __abs__(self):
+#         return sqrt(self.real*self.real + self.img*self.img)
+
+
+# cmp = Complex(7, 8)
+# cmp.real = 3
+# cmp.img = 4
+# c_abs = abs(cmp)
 
 
