@@ -129,7 +129,7 @@
 
 # dg = DigitRetrieve()
 
-# d1 = dg("123,3")   # 123 (целое число)
+# d1 = dg("123")   # 123 (целое число)
 # d2 = dg("45.54")   # None (не целое число)
 # d3 = dg("-56")   # -56 (целое число)
 # d4 = dg("12fg")  # None (не целое число)
@@ -231,3 +231,34 @@
 
 # input_dg = InputDigit(input)
 # print(input_dg())
+
+
+# task 10
+
+class InputValues:
+    def __init__(self, render): 
+        self.render = render
+        # здесь строчки программы
+
+    def __call__(self, func):     
+        def wrapper(*args, **kwargs):
+            data = [render(num) for num in func().split()]
+            return data
+        return wrapper
+    
+
+class RenderDigit:
+
+    def __call__(self, string):
+        if string.isnumeric():
+            return int(string)
+        elif string and string[0] == '-' and string[1:].isnumeric():
+            return -1 * int(string[1:]) 
+        return None
+
+
+render = RenderDigit()
+input_dg = InputValues(render)(input)
+
+res = input_dg()
+print(res)
