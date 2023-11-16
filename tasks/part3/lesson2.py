@@ -141,3 +141,64 @@
 # st = ["123.3", "abc", ".4", "0", "-5"]
 # digits = list(map(dg, st))  # [123, None, None, 0, -5]
 # print(digits)
+
+# #task 6
+
+# class RenderList:
+
+#     def __init__(self, type_list):
+#         if type_list == 'ol':
+#             self.type_list = 'ol'
+#         else:
+#             self.type_list = 'ul'
+
+#     def __call__(self, lst):
+#         res = f'<{self.type_list}>\n'
+#         for item in lst:
+#             res += f'<li>{item}</li>\n'
+#         res += f'</{self.type_list}>'
+#         return res
+
+# type_list = 1
+# render = RenderList(type_list)
+
+# print(render(['1', '2']))
+
+# # task 7
+
+# from typing import Any
+
+
+# class HandlerGET:
+
+#     def __init__(self, func):
+#         self.func = func
+
+#     def __call__(self, request):
+#         method = request.get('method', 'GET')
+
+#         if method == 'GET':
+#             return self.get(self.func, request)
+#         return None
+    
+#     def get(self, func, request, *args, **kwargs):
+#         return f'GET: {func(request)}'
+
+
+# task 8
+
+class HandlerGET:
+
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, request):
+        method = request.get('method', 'GET')
+
+        if method == 'GET':
+            return self.get(self.func, request)
+        return None
+    
+    def get(self, func, request, *args, **kwargs):
+        return f'GET: {func(request)}'
+
