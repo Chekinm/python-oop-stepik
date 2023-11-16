@@ -75,3 +75,106 @@
 # print(words.string)
 # print(f"Число слов: {n}; первое слово: {first}")
 # words(None)
+
+# task 5
+
+# class ObjList:
+
+#     def __init__(self, data):
+#         self.__data = data
+#         self.next = None
+#         self.prev = None
+
+#     @property
+#     def data(self):
+#         return self.__data
+    
+#     @property
+#     def next(self):
+#         return self.__next
+    
+#     @next.setter
+#     def next(self, obj):
+#         self.__next = obj
+
+#     @property
+#     def prev(self):
+#         return self.__prev
+    
+#     @prev.setter
+#     def prev(self, obj):
+#         self.__prev = obj
+    
+
+
+
+# class LinkedList:
+
+#     def __init__(self):
+#         self.head = None
+#         self.tail = None
+#         self.__lenght = 0
+
+#     def add_obj(self, obj):
+#         obj.prev = self.tail
+
+#         if self.tail:
+#             self.tail.next = obj
+#         self.tail = obj
+#         if self.head is None:
+#             self.head = obj
+
+#         self.__lenght += 1
+
+#     def get_obj_by_indx(self, indx):
+#         if not (0 <= indx < self.__lenght):
+#             raise IndexError(f'Index {indx} is out of range')
+
+#         else:
+#             obj = self.head
+#             i = 0
+#             while obj and i < indx:
+#                 obj = obj.next
+#                 i += 1
+#             return obj
+
+#     def remove_obj(self, indx):
+
+#         obj = self.get_obj_by_indx(indx)
+
+#         prev, next = obj.prev, obj.next
+
+#         if prev:
+#             prev.next = next
+
+#         if next:
+#             next.prev = prev
+
+#         if obj == self.head:
+#             self.head = next
+
+#         if obj == self.tail:
+#             self.tail = prev
+        
+#         self.__lenght -= 1
+
+#     def __call__(self, indx):
+#         return self.get_obj_by_indx(indx).data
+
+#     def __len__(self):
+#         return self.__lenght
+
+# linked_lst = LinkedList()
+# linked_lst.add_obj(ObjList("Sergey"))
+# linked_lst.add_obj(ObjList("Balakirev"))
+# linked_lst.add_obj(ObjList("Python"))
+# print(len(linked_lst))
+# linked_lst.remove_obj(2)
+# linked_lst.add_obj(ObjList("Python ООП"))
+# n = len(linked_lst)  # n = 3
+# s = linked_lst(1) # s = Balakirev
+# print(s)
+
+# task 6
+
+
