@@ -185,20 +185,34 @@
 #         return f'GET: {func(request)}'
 
 
-# task 8
+# # task 8
 
-class HandlerGET:
+# class Handler:
 
-    def __init__(self, func):
-        self.func = func
+#     def __init__(self, methods=('GET')):
+#         self.methods = {method: self.__getattribute__(method.lower())
+#                         for method in methods}
+        
+#     def __call__(self, func):
+         
+#         def wraper(request, *args, **kwargs):
+#             method = request.get('method', 'GET')
+#             if method in self.methods:
+#                 return self.methods[method](func, request)
+#             else:
+#                 return None
+#         return wraper
 
-    def __call__(self, request):
-        method = request.get('method', 'GET')
-
-        if method == 'GET':
-            return self.get(self.func, request)
-        return None
+#     def get(self, func, request, *args, **kwargs):
+#         return f'GET: {func(request)}'
     
-    def get(self, func, request, *args, **kwargs):
-        return f'GET: {func(request)}'
+#     def post(self, func, request, *args, **kwargs):
+#         return f'POST: {func(request)}'
 
+
+# @Handler(methods=('GET', 'POST')) # по умолчанию methods = ('GET',)
+# def contact(request):
+#     return "Сергей Балакирев"
+
+# res = contact({})
+# print(res)
