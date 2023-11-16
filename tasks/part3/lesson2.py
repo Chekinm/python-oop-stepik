@@ -216,3 +216,18 @@
 
 # res = contact({})
 # print(res)
+
+# # task 9
+
+# class InputDigit:
+
+#     def __init__(self, func):
+#         self.func = func
+
+#     def __call__(self):
+#         data = [int(num) for num in self.func().split()]
+#         return data
+
+
+# input_dg = InputDigit(input)
+# print(input_dg())
