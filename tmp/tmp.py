@@ -1,19 +1,20 @@
+import timeit
+from functools import reduce
 
-def hyper_outer(attr):
-    c = 23
-    def outer_function():
-        x = 10
+for_test3 = """a = range(100000)
+b = sum([i * i for i in a])"""
 
-        def inner_function():
-            y = 20
-            print("Область видимости внутренней функции:", attr, vars())
+for_test4 = """a = range(100000)
+b = sum(map(lambda x: x*x, a))"""
 
-        print("Область видимости внешней функции:", vars())
-        return inner_function
-    return outer_function
+for_test5 = """from functools import reduce
+a = range(100000)
+b = reduce(lambda sum, x: sum + x*x, a, 0)"""
 
-
-
-a = hyper_outer('sadfsdf')
-b = a()
-b()
+print('Start')
+el_time = timeit.timeit(for_test3, number=100)
+el_time2 = timeit.timeit(for_test4, number=100)
+el_time3 = timeit.timeit(for_test5, number=100)
+print(f'{"List:":>5} {el_time}')
+print(f'{"Map:":>5} {el_time2}')
+print(f'{"reduce:":>5} {el_time3}')

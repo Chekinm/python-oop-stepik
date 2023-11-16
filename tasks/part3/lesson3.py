@@ -217,4 +217,55 @@
 # cmp.img = 4
 # c_abs = abs(cmp)
 
+# # task 7
+# from math import sqrt
+# from functools import reduce
+
+
+# class RadiusVector:
+
+#     @staticmethod
+#     def check_arg(value, *types):
+#         if isinstance(value, types):
+#             return True
+#         return False
+
+#     def __init__(self, *args):
+#         self.coords = []
+#         if len(args) == 1 and self.check_arg(args[0], int):
+#             self.coords = [0 for i in range(args[0])] 
+#             return
+#         elif not self.check_arg(args[0], int):
+#             raise TypeError('number of coords must be int')
+#         else:
+#             for arg in args:
+#                 if self.check_arg(arf, int, float):
+#                     self.coords.append(arg)
+#                 else:
+#                     raise TypeError('coords must be int or float')
+
+#     def set_coords(self, *coords):
+#         for i in range(min(len(coords), len(self.coords))):
+#             if self.check_arg(coords[i], int, float):
+#                 self.coords[i] = coords[i]
+#             else:
+#                 raise TypeError('coords must be int or float')
+
+#     def get_coords(self):
+#         return tuple(self.coords)
+
+#     def __len__(self):
+#         return len(self.coords)
+
+#     def __abs__(self):
+#         return sqrt(reduce(lambda sum, x: sum + x*x, self.coords, 0))
+
+
+# vector3D = RadiusVector(3)
+# vector3D.set_coords(3, -5.6, 8)
+# a, b, c = vector3D.get_coords()
+# vector3D.set_coords(3, -5.6, 8, 10, 11) # ошибки быть не должно, последние две координаты игнорируются
+# vector3D.set_coords(1, 2) # ошибки быть не должно, меняются только первые две координаты
+# res_len = len(vector3D) # res_len = 3
+# res_abs = abs(vector3D)
 
