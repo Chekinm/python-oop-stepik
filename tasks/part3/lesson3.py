@@ -362,5 +362,3 @@ class PolyLine:
     def get_coords(self):
         return self.coords
 
-
-
