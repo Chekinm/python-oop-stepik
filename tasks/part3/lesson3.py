@@ -346,19 +346,19 @@
 # recipe = Recipe('ing_1', 'ing_2', 'ing_N')
 # print(recipe.ingreditent)
 
-# task 10
+# # task 10
 
-class PolyLine:
+# class PolyLine:
 
-    def __init__(self, start_coord, *coords):
-        self.coords = [start_coord, *coords]
+#     def __init__(self, start_coord, *coords):
+#         self.coords = [start_coord, *coords]
 
-    def add_coord(self, coord):
-        self.coords.append(coord)
+#     def add_coord(self, coord):
+#         self.coords.append(coord)
 
-    def remove_coord(self, indx):
-        self.coords.pop(indx)
+#     def remove_coord(self, indx):
+#         self.coords.pop(indx)
 
-    def get_coords(self):
-        return self.coords
+#     def get_coords(self):
+#         return self.coords
 
