@@ -269,42 +269,98 @@
 # res_len = len(vector3D) # res_len = 3
 # res_abs = abs(vector3D)
 
-# task 8
+# # task 8
 
-class Clock:
+# class Clock:
 
-    def __init__(self, hours=0, minutes=0, seconds=0):
-        self.hours = hours
-        self.minutes = minutes
-        self.seconds = seconds
+#     def __init__(self, hours=0, minutes=0, seconds=0):
+#         self.hours = hours
+#         self.minutes = minutes
+#         self.seconds = seconds
 
-    def get_time(self):
-        return self.hours * 3600 + self.minutes * 60 + self.seconds
+#     def get_time(self):
+#         return self.hours * 3600 + self.minutes * 60 + self.seconds
     
-    def set_time_by_seconds(self, seconds):
-        self.hours = seconds // 3600
-        self.minutes = seconds % 3600 // 60
-        self.seconds = seconds % 3600 % 60
+#     def set_time_by_seconds(self, seconds):
+#         self.hours = seconds // 3600
+#         self.minutes = seconds % 3600 // 60
+#         self.seconds = seconds % 3600 % 60
 
-    def __str__(self):
-        return f'{self.hours:02d}: {self.minutes:02d}: {self.seconds:02d}'
+#     def __str__(self):
+#         return f'{self.hours:02d}: {self.minutes:02d}: {self.seconds:02d}'
     
     
 
 
-class DeltaCLock:
+# class DeltaCLock:
 
-    def __init__(self, clock1, clock2):
+#     def __init__(self, clock1, clock2):
 
-        self.clock1 = clock1
-        self.clock2 = clock2
-        self.diff = Clock()
-        self.diff.set_time_by_seconds(max(0, (self.clock1.get_time() - self.clock2.get_time())))
+#         self.clock1 = clock1
+#         self.clock2 = clock2
+#         self.diff = Clock()
+#         self.diff.set_time_by_seconds(max(0, (self.clock1.get_time() - self.clock2.get_time())))
 
-    def __str__(self):
-        return str(self.diff)
+#     def __str__(self):
+#         return str(self.diff)
     
-    def __len__(self):
-        return self.diff.get_time()
+#     def __len__(self):
+#         return self.diff.get_time()
         
+
+# # task 9
+
+# class Ingredient:
+    
+#     def __init__(self, name:str, volume:float, measure:str) -> None:
+#         self.name = name
+#         self. volume = volume
+#         self.measure = measure
+
+#     def __str__(self):
+#         return f'{self.name}: {self.volume}, {self.measure}'
+    
+# class Recipe:
+    
+#     def __init__(self, *ings: Ingredient) -> None:
+#         self.ingreditents = list(ings)
+
+#     def add_ingredient(self, ing: Ingredient) -> None:
+#         if isinstance(ing, Ingredient):
+#             self.ingreditents.append(ing)
+
+#     def remove_ingrediten(self, ing: Ingredient) -> None:
+#         self.ingreditents.remove(ing)
+
+#     def get_ingredients(self):
+#         return tuple(self.ingreditents)
+    
+#     def __len__(self):
+#         return len(self.ingreditents)
+    
+    
+
+
+
+
+# recipe = Recipe('ing_1', 'ing_2', 'ing_N')
+# print(recipe.ingreditent)
+
+# task 10
+
+class PolyLine:
+
+    def __init__(self, start_coord, *coords):
+        self.coords = [start_coord, *coords]
+
+    def add_coord(self, coord):
+        self.coords.append(coord)
+
+    def remove_coord(self, indx):
+        self.coords.pop(indx)
+
+    def get_coords(self):
+        return self.coords
+
+
 
