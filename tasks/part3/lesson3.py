@@ -269,3 +269,42 @@
 # res_len = len(vector3D) # res_len = 3
 # res_abs = abs(vector3D)
 
+# task 8
+
+class Clock:
+
+    def __init__(self, hours=0, minutes=0, seconds=0):
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+
+    def get_time(self):
+        return self.hours * 3600 + self.minutes * 60 + self.seconds
+    
+    def set_time_by_seconds(self, seconds):
+        self.hours = seconds // 3600
+        self.minutes = seconds % 3600 // 60
+        self.seconds = seconds % 3600 % 60
+
+    def __str__(self):
+        return f'{self.hours:02d}: {self.minutes:02d}: {self.seconds:02d}'
+    
+    
+
+
+class DeltaCLock:
+
+    def __init__(self, clock1, clock2):
+
+        self.clock1 = clock1
+        self.clock2 = clock2
+        self.diff = Clock()
+        self.diff.set_time_by_seconds(max(0, (self.clock1.get_time() - self.clock2.get_time())))
+
+    def __str__(self):
+        return str(self.diff)
+    
+    def __len__(self):
+        return self.diff.get_time()
+        
+
