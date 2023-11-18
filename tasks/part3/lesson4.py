@@ -1,85 +1,85 @@
-# task 4
-from collections import Counter
+# # task 4
+# from collections import Counter
 
 
-class NewList:
+# class NewList:
 
-    def __init__(self, ls=None):
-        if ls is None:
-            self.__list = []
-        else:
-            self.__list = ls.copy()
+#     def __init__(self, ls=None):
+#         if ls is None:
+#             self.__list = []
+#         else:
+#             self.__list = ls.copy()
 
-    @staticmethod
-    def sub_lists_slow(list1, list2):
-        left = list1.copy()
-        right = list2.copy()
-        left_idx = 0
-        right_idx = 0
+#     @staticmethod
+#     def sub_lists_slow(list1, list2):
+#         left = list1.copy()
+#         right = list2.copy()
+#         left_idx = 0
+#         right_idx = 0
 
-        while left_idx < len(left):
-            if (left[left_idx] != right[right_idx] or
-                    type(left[left_idx]) is not type(right[right_idx])):
-                right_idx += 1
-                if right_idx >= len(right):
-                    left_idx += 1
-                    right_idx = 0
-            else:
-                left.pop(left_idx)
-                right.pop(right_idx)
-                right_idx = 0
+#         while left_idx < len(left):
+#             if (left[left_idx] != right[right_idx] or
+#                     type(left[left_idx]) is not type(right[right_idx])):
+#                 right_idx += 1
+#                 if right_idx >= len(right):
+#                     left_idx += 1
+#                     right_idx = 0
+#             else:
+#                 left.pop(left_idx)
+#                 right.pop(right_idx)
+#                 right_idx = 0
 
-        return left
-
-
-    @staticmethod
-    def sub_lists(left, right):
-        res = []
-        right_counter = Counter((elem, type(elem)) for elem in right)
-
-        for item in left:
-            search_key = (item, type(item))
-            count = right_counter[search_key]
-            if count == 0:
-                res.append(item)
-            else:
-                right_counter[search_key] = count - 1
-        return res
-
-    def __sub__(self, other):
-
-        if isinstance(other, (NewList, list)):
-            left_op = self.__list
-            right_op = other if isinstance(other, list) else other.get_list()
-            return NewList(self.sub_lists(left_op, right_op))
-
-        raise NotImplementedError(f'__sub__ is not emplemented between {type(self)} and {type(other)}')
-
-    def __rsub__(self, other):
-        if isinstance(other, (NewList, list)):
-
-            left_op = (other if isinstance(other, list) else other.get_list())
-            right_op = self.__list
-            return NewList(self.sub_lists(left_op, right_op))
-
-        raise NotImplementedError(f'__rsub__ is not emplemented between {type(other)}  and {type(self)}')
-
-    def __isub__(self, other):
-
-        if isinstance(other, (NewList, list)):
-            left_op = self.__list
-            right_op = other if isinstance(other, list) else other.get_list()
-            self.__list = self.sub_lists(left_op, right_op).copy()
-            return self
-
-        raise NotImplementedError(f'__sub__ is not emplemented between {type(self)} and {type(other)}')
-
-    def get_list(self):
-        return self.__list.copy()
+#         return left
 
 
+#     @staticmethod
+#     def sub_lists(left, right):
+#         res = []
+#         right_counter = Counter((elem, type(elem)) for elem in right)
 
-res = NewList(list(range(1, 100000000))) - list(range(1, 10000000))
+#         for item in left:
+#             search_key = (item, type(item))
+#             count = right_counter[search_key]
+#             if count == 0:
+#                 res.append(item)
+#             else:
+#                 right_counter[search_key] = count - 1
+#         return res
+
+#     def __sub__(self, other):
+
+#         if isinstance(other, (NewList, list)):
+#             left_op = self.__list
+#             right_op = other if isinstance(other, list) else other.get_list()
+#             return NewList(self.sub_lists(left_op, right_op))
+
+#         raise NotImplementedError(f'__sub__ is not emplemented between {type(self)} and {type(other)}')
+
+#     def __rsub__(self, other):
+#         if isinstance(other, (NewList, list)):
+
+#             left_op = (other if isinstance(other, list) else other.get_list())
+#             right_op = self.__list
+#             return NewList(self.sub_lists(left_op, right_op))
+
+#         raise NotImplementedError(f'__rsub__ is not emplemented between {type(other)}  and {type(self)}')
+
+#     def __isub__(self, other):
+
+#         if isinstance(other, (NewList, list)):
+#             left_op = self.__list
+#             right_op = other if isinstance(other, list) else other.get_list()
+#             self.__list = self.sub_lists(left_op, right_op).copy()
+#             return self
+
+#         raise NotImplementedError(f'__sub__ is not emplemented between {type(self)} and {type(other)}')
+
+#     def get_list(self):
+#         return self.__list.copy()
+
+
+
+# res = NewList(list(range(1, 100000000))) - list(range(1, 10000000))
 
 
 
