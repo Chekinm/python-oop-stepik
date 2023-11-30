@@ -25,8 +25,8 @@
 #                     left_idx += 1
 #                     right_idx = 0
 #             else:
-#                 left.pop(left_idx)
-#                 right.pop(right_idx)
+#                 left.pop_back(left_idx)
+#                 right.pop_back(right_idx)
 #                 right_idx = 0
 
 #         return left
@@ -117,106 +117,199 @@
 # res_4 = [1, 2, 2, 3] - a # NewList: [1, 2]
 # assert res_4.get_list() == [1, 2], "метод get_list вернул неверный список"
 
-# task 5
+# # task 5
 
-class ListMath:
+# class ListMath:
 
-    def __init__(self, ls=None):
-        if ls is None:
-            self.lst_math = []
-        else:
-            self.lst_math = list(filter(lambda x: type(x) in (int, float) and type(x) is not bool, ls))
+#     def __init__(self, ls=None):
+#         if ls is None:
+#             self.lst_math = []
+#         else:
+#             self.lst_math = list(filter(lambda x: type(x) in (int, float) and type(x) is not bool, ls))
 
-    def perform(func):
-        func_name = func.__name__
-        if func_name[2] == 'r':
-            def perform_right(self, other):
-                return ListMath(list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math)))
-            return perform_right
+#     def perform(func):
+#         func_name = func.__name__
+#         if func_name[2] == 'r':
+#             def perform_right(self, other):
+#                 return ListMath(list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math)))
+#             return perform_right
 
-        elif func_name[2] == 'i':
+#         elif func_name[2] == 'i':
 
-            def perform_self(self, other):
-                self.list = list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math))
-            return perform_self
+#             def perform_self(self, other):
+#                 self.list = list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math))
+#             return perform_self
     
-        def perform_left(self, other):
-            return ListMath(list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math)))
-        return perform_left
+#         def perform_left(self, other):
+#             return ListMath(list(map(lambda x: x.__getattribute__(func_name)(other), self.lst_math)))
+#         return perform_left
     
 
 
 
-    @perform
-    def __add__(self, other):
-        pass
+#     @perform
+#     def __add__(self, other):
+#         pass
 
-    @perform
-    def __radd__(self, other):
-        pass
-
-
-    @perform
-    def __mul__(self, other):
-        pass
-
-    @perform
-    def __rmul__(self, other):
-        pass
-
-    @perform
-    def __truediv__(self, other):
-        pass
-
-    @perform
-    def __rtruediv__(self, other):
-        pass
-
-    @perform
-    def __sub__(self, other):
-        pass
-
-    @perform
-    def __rsub__(self, other):
-        pass
+#     @perform
+#     def __radd__(self, other):
+#         pass
 
 
+#     @perform
+#     def __mul__(self, other):
+#         pass
+
+#     @perform
+#     def __rmul__(self, other):
+#         pass
+
+#     @perform
+#     def __truediv__(self, other):
+#         pass
+
+#     @perform
+#     def __rtruediv__(self, other):
+#         pass
+
+#     @perform
+#     def __sub__(self, other):
+#         pass
+
+#     @perform
+#     def __rsub__(self, other):
+#         pass
 
 
+# # task 6
 
+# class StackObj:
+
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
+
+#     @property
+#     def data(self):
+#         return self.__data
+
+#     @data.setter
+#     def data(self, data):
+#         self.__data = data
+
+#     @property
+#     def next(self):
+#         return self.__next
+
+#     @next.setter
+#     def next(self, next):
+#         self.__next = next
+
+#     def __str__(self):
+#         return self.data
+
+
+# class Stack:
+
+    
+#     def __init__(self):
+#         self.__top = None
+    
+#     @property
+#     def top(self):
+#         return self.__top
+
+#     def push_back(self, obj):
+#         obj.next = self.top
+#         self.__top = obj
+
+#     def pop_back(self):
+#         if self.top:
+#             response = self.top
+#             self.__top = self.top.next
+#             return response
+#         else:
+#             raise IndexError("Trying to pop_back from epmty stack")
         
+#     def __add__(self, other):
+#         self.push_back(other)
+#         return self
+        
+    
+#     def __iadd__(self, other):
+#         self.push_back(other)
+#         return self
+
+#     def __mul__(self, other):
+#         for obj in other:
+#             o = StackObj(obj)
+#             self.push_back(o)
+#         return self
+    
+#     def __imul__(self, other):
+#         for obj in other:
+#             o = StackObj(obj)
+#             self.push_back(o)
+#         return self
+
+#     def get_data(self):
+#         result = []
+#         if self.top:
+#             counter = self.top
+#             while counter:
+#                 result.append(counter.data)
+#                 counter = counter.next
+#         return list(reversed(result))
 
 
+# # st = Stack()
+# # obj1 = StackObj("obj1")
+# # st.push_back(obj1)
+# # st.push_back(StackObj(12))
+# # st.push_back(StackObj([1, 2, 3]))
+# # print(st.pop_back().data)
+# # st.push_back(StackObj("obj4"))
+# # print(st.pop_back().data)
+# # st.push_back(StackObj("obj5"))
 
+# # h = st.top
+# # print(h.data)
+# # while h:
+# #     print(h.data, end=' ')
+# #     h = h.next
+# # else:
+# #     print('')
+# # st = st + StackObj('added')
+# # st = st + StackObj('added1')
 
-lst1 = ListMath()
-lp = [1, False, 2, -5, "abc", 7]
-lst2 = ListMath(lp)
-lst3 = ListMath(lp)
+# # h = st.pop_back()
+# # print(st)
+# # while h:
+# #     print(h.data, end=' ')
+    
+# #     h = h.next
+# # else:
+# #     print('')
+# # st += StackObj('selfadded')
+# # h = st.top
 
-assert id(lst2.lst_math) != id(lst3.lst_math), "внутри объектов класса ListMath должна создаваться копия списка"
+# # while h:
+# #     print(h.data, end=' ')
+# #     h = h.next
+# # else:
+# #     print('')
+# # st += StackObj('selfadded')
 
-assert lst1.lst_math == [] and lst2.lst_math == [1, 2, -5, 7], "неверные значения в списке объекта класса ListMath"
+# # while h:
+# #     print(h.data, end=' ')
+# #     h = h.next
+# # else:
+# #     print('')
+# # st = st * [StackObj('1'), StackObj('2'), StackObj('3')]
+# # st *=  [StackObj('4'), StackObj('5'), StackObj('6')]
 
-res1 = lst2 + 76
-lst = ListMath([1, 2, 3])
-lst += 5
-assert lst.lst_math == [6, 7, 8] and res1.lst_math == [77, 78, 71, 83], "неверные значения, полученные при операциях сложения"
+# # while h:
+    
+# #     print(h.data)
+# #     h = h.next
 
-lst = ListMath([0, 1, 2])
-res3 = lst - 76
-res4 = 7 - lst
-assert res3.lst_math == [-76, -75, -74] and res4.lst_math == [7, 6, 5], "неверные значения, полученные при операциях вычитания"
-
-lst -= 3
-assert lst.lst_math == [-3, -2, -1], "неверные значения, полученные при операции вычитания -="
-
-lst = ListMath([1, 2, 3])
-res5 = lst * 5
-res6 = 3 * lst
-lst *= 4
-assert res5.lst_math == [5, 10, 15] and res6.lst_math == [3, 6, 9], "неверные значения, полученные при операциях умножения"
-assert lst.lst_math == [4, 8, 12], "неверные значения, полученные при операциях умножения"
-
-lst = lst / 2
-lst /= 13.0
