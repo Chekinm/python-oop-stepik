@@ -354,3 +354,45 @@
 
 #     def __len__(self):
 #         return len(self.book_list)
+
+# # task 8
+
+# class Item:
+
+#     def __init__(self, name: str, money: int | float) -> None:
+#         self.name = name
+#         self.money = money
+
+#     def __add__(self, other_item, *items):
+#         res = self.money
+#         for item in (other_item, *items):
+#             res += item.money
+#         return 
+    
+#     def __radd(self, other):
+#         return other + self.money
+    
+
+# class Budget:
+
+#     def __init__(self):
+#         self.spends = []
+    
+#     def add_item(self, item):
+#         self.spends.append(item)
+
+
+#     def remove_item(self, idx):
+#         if idx >=0 and idx < len(self.spends):
+#             self.spends.pop(idx)
+
+#     def get_items(self):
+#         return self.spends
+
+
+
+    
+
+
+
+        
