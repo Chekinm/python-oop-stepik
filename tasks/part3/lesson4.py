@@ -390,9 +390,57 @@
 #         return self.spends
 
 
+# # task 9
 
+# class Box3D:
+
+#     def __init__(self, width, height, depth):
+#         self.width = width
+#         self.height = height
+#         self.depth = depth
+    
+#     def __add__(self, other):
+        
+#         return Box3D(self.width + other.width,
+#                      self.height + other.height,
+#                      self.depth + other.depth,
+#                      )
     
 
-
-
+#     def __sub__(self, other):
         
+#         return Box3D(self.width - other.width,
+#                      self.height - other.height,
+#                      self.depth - other.depth,
+#                      )
+    
+#     def __mul__(self, number):
+        
+#         return Box3D(self.width * number,
+#                      self.height * number,
+#                      self.depth * number,
+#                      )
+    
+#     def __rmul__(self, number):
+        
+#         return Box3D(self.width * number,
+#                      self.height * number,
+#                      self.depth * number,
+#                      )
+    
+#     def __floordiv__(self, number):
+        
+#         return Box3D(self.width // number,
+#                      self.height // number,
+#                      self.depth // number,
+#                      )
+    
+    
+#     def __mod__(self, number):
+        
+#         return Box3D(self.width % number,
+#                      self.height % number,
+#                      self.depth % number,
+#                      )
+
+
