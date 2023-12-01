@@ -443,118 +443,110 @@
 #                      self.depth % number,
 #                      )
 
+# task 10
 
-# # task 10
+class MaxPooling:
 
-# class MaxPooling:
+    def __init__(self, step=(2, 2), size=(2, 2)):
+        self.step = step
+        self.size = size
 
-#     def __init__(self, step=(2, 2), size=(2, 2)):
-#         self.step = step
-#         self.size = size
+    def count_square(self, x, y, matrix):
+        result = 0
+        size_x, size_y = self.size
+        len_x, len_y = len(matrix[0]), len(matrix)
 
-#     def count_square(self, x, y, matrix):
-#         result = 0
-#         size_x, size_y = self.size
-#         print(size_x, size_y)
+        if (x + size_x > len_x or 
+                y + size_y > len_y):
+            raise ValueError("Coordinates is out of range")
+
+        for _x in range(x, x + size_x):
+            for _y in range(y, y + size_y):
+                if isinstance(matrix[_x][_y], (int, float)):
+                    result = max(result, matrix[_x][_y])
+                else:
+                    raise TypeError("Value of the matrix has to be int or float.")
+        return result
+
+    @staticmethod
+    def check_matrix(matrix):
+
+        if not (isinstance(matrix, list)):
+            return False  
+        len_x = len(matrix[0])
+
+        for row in matrix:
+            if not (isinstance(row, list)) or len(row)!= len_x:
+                return False
+        return True
+
+    def generate_condensed_matrix(self, matrix):
+
+        size_x, size_y = self.size
+        step_x, step_y = self.step
+        len_x, len_y = len(matrix[0]), len(matrix)
+        result = []
+
+        for x in range(0, len_x // step_x + 1, step_x):
+            if x + size_x > len_x:
+                continue
+            result.append([])
+            for y in range(0, len_y // step_y + 1, step_y):
+                if y + size_y > len_y:
+                    continue
+                try:
+                    result[x // step_x].append(self.count_square(x, y, matrix))
+                except (ValueError, TypeError):
+                    raise ValueError("Неверный формат для первого параметра matrix.")
+
+        return result
+
+    def __call__(self, matrix):
         
-#         len_x, len_y = len(matrix[0]), len(matrix)
+        if not self.check_matrix(matrix):
+            raise ValueError("Неверный формат для первого параметра matrix.")
 
-#         if (x + size_x > len_x or 
-#                 y + size_y > len_y):
-#             print('eee', f'{x=}, {y=},{len_x=},{size_x=}, {len_y=},{size_y=}')
-#             raise ValueError("Неверный формат для первого параметра matrix.")
-
-#         for _x in range(x, x + size_x):
-#             for _y in range(y, y + size_y):
-#                 if isinstance(matrix[_x][_y], (int, float)):
-#                     result = max(result, matrix[_x][_y])
-#                 else:
-#                     print(f'{type(matrix[_x][_y])}')
-#                     print('sss', f'{x=}, {y=},{len_x=},{size_x=}')
-#                     raise ValueError("Неверный формат для первого параметра matrix.")
-#         print(result)
-#         return result
-    
-
-#     @staticmethod
-#     def check_matrix(matrix):
-
-#         if not (isinstance(matrix, list)):
-#             raise ValueError("Неверный формат для первого параметра matrix.")
-        
-#         len_x = len(matrix[0])
-
-#         for row in matrix:
-#             if not (isinstance(row, list)) or len(row)!= len_x:
-#                 raise ValueError("Неверный формат для первого параметра matrix.")
-        
-#         return True
-
-        
-
-        
+        result = self.generate_condensed_matrix(matrix)
+        print(result)
+        return result
 
 
-#     def __call__(self, matrix):
-        
-#         self.check_matrix(matrix)
-#         print(matrix)
+mp = MaxPooling(step=(2, 2), size=(2,2))
+m1 = [[1, 10, 10], [5, 10, 0], [0, 1, 2]]
+m2 = [[1, 10, 10, 12], [5, 10, 0, -5], [0, 1, 2, 300], [40, -100, 0, 54.5]]
+res1 = mp(m1)
+res2 = mp(m2)
 
-#         size_x, size_y = self.size
-#         step_x, step_y = self.step
-#         print(f'{step_x=}, {step_y=}')
-#         len_x, len_y = len(matrix[0]), len(matrix)
-#         result = []
-        
-#         for x in range(0, len_x // step_x + 1, step_x):
-#             if x + size_x > len_x:
-#                 continue
-#             result.append([])
-#             print(result)
-#             for y in range(0, len_y // step_y + 1, step_y):
-#                 if y + size_y > len_y:
-#                     continue
-#                 result[x // step_x].append(self.count_square(x, y, matrix))
-#         print('sss', result)
-#         return result
+assert res1 == [[10]], "неверный результат операции MaxPooling"
+assert res2 == [[10, 12], [40, 300]], "неверный результат операции MaxPooling"
 
+mp = MaxPooling(step=(3, 3), size=(2,2))
+m3 = [[1, 12, 14, 12], [5, 10, 0, -5], [0, 1, 2, 300], [40, -100, 0, 54.5]]
+res3 = mp(m3)
+assert res3 == [[12]], "неверный результат операции при MaxPooling(step=(3, 3), size=(2,2))"
 
-# mp = MaxPooling(step=(2, 2), size=(2,2))
-# m1 = [[1, 10, 10], [5, 10, 0], [0, 1, 2]]
-# m2 = [[1, 10, 10, 12], [5, 10, 0, -5], [0, 1, 2, 300], [40, -100, 0, 54.5]]
-# res1 = mp(m1)
-# res2 = mp(m2)
+try:
+    res = mp([[1, 2], [3, 4, 5]])
+except ValueError:
+    assert True
+else:
+    assert False, "некорректо отработала проверка (или она отсутствует) на не прямоугольную матрицу"
 
-# assert res1 == [[10]], "неверный результат операции MaxPooling"
-# assert res2 == [[10, 12], [40, 300]], "неверный результат операции MaxPooling"
-
-# mp = MaxPooling(step=(3, 3), size=(2,2))
-# m3 = [[1, 12, 14, 12], [5, 10, 0, -5], [0, 1, 2, 300], [40, -100, 0, 54.5]]
-# res3 = mp(m3)
-# assert res3 == [[12]], "неверный результат операции при MaxPooling(step=(3, 3), size=(2,2))"
-
-# try:
-#     res = mp([[1, 2], [3, 4, 5]])
-# except ValueError:
-#     assert True
-# else:
-#     assert False, "некорректо отработала проверка (или она отсутствует) на не прямоугольную матрицу"
-
-# try:
-#     res = mp([[1, 2], [3, '4']])
-# except ValueError:
-#     assert True
-# else:
-#     assert False, "некорректо отработала проверка (или она отсутствует) на не числовые значения в матрице"
+try:
+    res = mp([[1, 2], [3, '4']])
+except ValueError:
+    assert True
+else:
+    assert False, "некорректо отработала проверка (или она отсутствует) на не числовые значения в матрице"
  
 
-# mp = MaxPooling(step=(1, 1), size=(5, 5))
-# res = mp([[5, 0, 88, 2, 7, 65],
-#           [1, 33, 7, 45, 0, 1],
-#           [54, 8, 2, 38, 22, 7],
-#           [73, 23, 6, 1, 15, 0],
-#           [4, 12, 9, 1, 76, 6],
-#           [0, 15, 10, 8, 11, 78]])    # [[88, 88], [76, 78]]
+mp = MaxPooling(step=(1, 1), size=(5, 5))
+res = mp([[5, 0, 88, 2, 7, 65],
+          [1, 33, 7, 45, 0, 1],
+          [54, 8, 2, 38, 22, 7],
+          [73, 23, 6, 1, 15, 0],
+          [4, 12, 9, 1, 76, 6],
+          [0, 15, 10, 8, 11, 78]])    # [[88, 88], [76, 78]]
 
-# assert res == [[88, 88], [76, 78]], "неверный результат операции MaxPooling(step=(1, 1), size=(5, 5))"
+assert res == [[88, 88], [76, 78]], "неверный результат операции MaxPooling(step=(1, 1), size=(5, 5))"
  
