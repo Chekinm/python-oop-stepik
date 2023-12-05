@@ -197,3 +197,56 @@
 # lst_text_sorted = [' '.join(string.lst_words) for string in lst_text_sorted]
 
 # print(lst_text_sorted)
+
+
+# task 6
+
+class Morph:
+
+    def __init__(self, *words):
+        self.words = []
+        for word in words:
+            self.words.append(word.lower())
+        
+        
+    def add_word(self, word):
+        if word.lower() not in self.words:
+            self.words.append(word.lower())
+
+    def get_words(self):
+        return tuple(self.words)
+
+    def __eq__(self, other):
+        if isinstance(other, str):
+            return other.lower() in self.words
+        
+    
+
+
+dict_words = [Morph('связь', 'связи', 'связью', 'связи', 'связей', 'связям', 'связями', 'связях'),
+              Morph('формула', 'формулы', 'формуле', 'формулу', 'формулой', 'формул', 'формулам', 'формулами',
+                    'формулах',
+                    ),
+              Morph('вектор', 'вектора', 'вектору', 'вектором', 'векторе', 'векторы', 'векторов', 'векторам',
+                    'векторами', 'векторах',
+                    ),
+              Morph('эффект', 'эффекта', 'эффекту', 'эффектом', 'эффекте', 'эффекты', 'эффектов', 'эффектам',
+                    'эффектами', 'эффектах'
+                    ), 
+              Morph('день', 'дня', 'дню', 'днем', 'дне', 'дни', 'дням', 'днями', 'днях',
+                    )]
+
+# text = input()
+text = "Мы будем устанавливать связь завтра днем."
+t = text.strip(' .,!?').split()
+print(t)
+count = 0
+for word in t:
+    for mf in dict_words:
+        if word == mf:
+            count += 1
+
+print(count)
+
+for mf in dict_words:
+    print(mf.get_words())
