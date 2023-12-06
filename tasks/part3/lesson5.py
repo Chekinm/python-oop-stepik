@@ -394,3 +394,31 @@
 #     print("неплохо")
 # else:
 #     print("нужно поднажать")
+
+# # task 9
+
+# class Body:
+
+#     def __init__(self, name, ro, volume):
+#         self.name = name
+#         self.ro = ro
+#         self. volume = volume
+#         self.mass = ro * volume
+
+#     def __eq__(self, other):
+#         other = other.mass if isinstance(other, Body) else other
+#         return self.mass == other
+
+#     def __lt__(self, other):
+#         other = other.mass if isinstance(other, Body) else other
+#         return self.mass < other
+
+
+# body1 = Body('s',1,1000)
+# body2 = Body('d',2,300)
+
+# print(body1.mass)
+# print(body2.mass)
+# print(body1<body2)
+
+# print(body1>body2)
