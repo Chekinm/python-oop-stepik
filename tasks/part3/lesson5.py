@@ -422,3 +422,44 @@
 # print(body1<body2)
 
 # print(body1>body2)
+
+# task 10
+
+
+class Thing:
+
+    def __init__(self, name, mass):
+        self.name = name
+        self.mass = mass
+
+    def __eq__(self, other):
+        if isinstance(other, Thing):
+            return (self.name.lower() == other.name.lower() and 
+                    self.mass == other.mass)
+        else:
+            raise "Not implemented"
+
+
+class Box:
+
+    def __init__(self):
+        self.in_the_box = []
+
+    def add_thing(self, obj):
+        if isinstance(obj, Thing):
+            self.in_the_box.append(obj)
+
+    def get_things(self):
+        return self.in_the_box
+
+    def __eq__(self, other):
+        if isinstance(other, Box):
+            tmp = other.in_the_box.copy()
+            if len(self.in_the_box) != len(other.in_the_box):
+                return False
+            for i in range(len(self.in_the_box)):
+                if self.in_the_box[i] in tmp:
+                    tmp.remove(self.in_the_box[i])
+                else:
+                    return False
+        return True
