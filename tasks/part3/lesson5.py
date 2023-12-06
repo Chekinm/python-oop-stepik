@@ -271,3 +271,126 @@
 #         return res
                 
     
+# # task 8
+
+# class Currency:
+#     RUB = 'rub'
+#     DOLLAR = 'dollar'
+#     EURO = 'euro'
+
+
+# class CentralBank:
+
+#     banks = []
+#     def __new__(cls):
+#         return None
+
+#     rates = {'rub': 72.5, 'dollar': 1.0, 'euro': 1.15}
+
+#     @classmethod
+#     def register(cls, money):
+#         money.cb = cls
+
+
+# class Money:
+
+#     def __init__(self, volume=0, currency=None):
+#         self.volume = volume
+#         self.cb = None
+#         self.currency = currency
+
+#     @property
+#     def cb(self):
+#         return self.__cb
+
+#     @cb.setter
+#     def cb(self, cb):
+#         if hasattr(cb, 'rates'):
+#             self.__cb = cb
+#         else:
+#             self.__cb = None
+
+#     @property
+#     def volume(self):
+#         return self.__volume 
+
+#     @volume.setter
+#     def volume(self, volume):
+#         if isinstance(volume, (int, float)):
+#             self.__volume = volume
+
+#     @property
+#     def _is_rigestred(self):
+#         if self.currency is None or self.cb is None:
+#             return False
+#         return True
+
+#     def __eq__(self, other):
+#         if not self._is_rigestred:
+#             raise ValueError("Неизвестен курс валют.")
+
+#         return abs(self.volume / self.cb.rates[self.currency] -
+#                    other.volume / other.cb.rates[other.currency]) < 0.1
+
+#     def __gt__(self, other):
+#         if not self._is_rigestred:
+#             raise ValueError("Неизвестен курс валют.")
+
+#         print(f'self - {self.currency} in usd, {self.volume / self.cb.rates[self.currency]}')
+#         print(f'other -{other.currency} in usd, {other.volume / other.cb.rates[self.currency]}')
+
+
+#         return (self.volume / self.cb.rates[self.currency] > 
+#                 other.volume / other.cb.rates[other.currency]) 
+
+#     def __ge__(self, other):
+#         if not self._is_rigestred:
+#             raise ValueError("Неизвестен курс валют.")
+
+#         return (self.volume / self.cb.rates[self.currency] >=
+#                 other.volume / other.cb.rates[other.currency]) 
+    
+
+# class MoneyR(Money):
+
+#     def __init__(self, volume):
+#         super().__init__(volume, currency=Currency.RUB)
+#         self.cb = None
+
+
+# class MoneyD(Money):
+
+#     def __init__(self, volume):
+#         super().__init__(volume, Currency.DOLLAR)
+
+
+# class MoneyE(Money):
+
+#     def __init__(self, volume):
+#         super().__init__(volume, Currency.EURO)
+
+
+# CentralBank.rates = {'rub': 10, 'dollar': 1.0, 'euro': 2}
+# print(CentralBank.rates)
+
+# r = MoneyR(45000)
+# d = MoneyD(500)
+
+# CentralBank.register(r)
+# CentralBank.register(d)
+# print(r.cb.rates)
+
+
+# r = MoneyR(45000)
+# d = MoneyD(500)
+
+# CentralBank.register(r)
+# CentralBank.register(d)
+
+# print(r.currency)
+# print(d.currency)
+
+# if r > d:
+#     print("неплохо")
+# else:
+#     print("нужно поднажать")
