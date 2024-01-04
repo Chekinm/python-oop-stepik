@@ -119,4 +119,24 @@
     
 # if fio == "Гейтс Б.":
 #     assert len(v[0]) == 2 and len(v[1]) == 2 and len(v[2]) == 1 and len(v[3]) == 1, "неверно сформирован словарь dict_db"
+
+#task 8
+
+class BookStudy:
+
+    def __init__(self, name, author, year):
+        self.name = name
+        self.author = author
+        self.year = year
     
+    def __hash__(self):
+        return hash((self.name.lower(), self.author.lower()))
+    
+lst_in = list(map(str.strip, sys.stdin.readlines()))
+books = set()
+for b in lst_in:
+    name, author, year = b.split('; ')
+    bk =BookStudy(name, author, int(year))
+    books.add(bk)
+
+unique_books = len(books)
