@@ -120,23 +120,98 @@
 # if fio == "Гейтс Б.":
 #     assert len(v[0]) == 2 and len(v[1]) == 2 and len(v[2]) == 1 and len(v[3]) == 1, "неверно сформирован словарь dict_db"
 
-#task 8
+# #task 8
 
-class BookStudy:
+# class BookStudy:
 
-    def __init__(self, name, author, year):
-        self.name = name
-        self.author = author
-        self.year = year
+#     def __init__(self, name, author, year):
+#         self.name = name
+#         self.author = author
+#         self.year = year
     
-    def __hash__(self):
-        return hash((self.name.lower(), self.author.lower()))
+#     def __hash__(self):
+#         return hash((self.name.lower(), self.author.lower()))
     
-lst_in = list(map(str.strip, sys.stdin.readlines()))
-books = set()
-for b in lst_in:
-    name, author, year = b.split('; ')
-    bk =BookStudy(name, author, int(year))
-    books.add(bk)
+# lst_in = list(map(str.strip, sys.stdin.readlines()))
+# books = set()
+# for b in lst_in:
+#     name, author, year = b.split('; ')
+#     bk =BookStudy(name, author, int(year))
+#     books.add(bk)
 
-unique_books = len(books)
+# unique_books = len(books)
+
+# # task 9
+
+# class Dimensions:
+
+#     @staticmethod
+#     def check_value(value):
+#         return (isinstance(value, (int, float)) and value > 0)
+
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+
+#     @property
+#     def a(self):
+#         return self.__a
+
+#     @a.setter
+#     def a(self, value):
+#         if self.check_value(value):
+#             self.__a = value
+#         else:
+#             raise ValueError("габаритные размеры должны быть положительными числами")
+
+#     @property
+#     def b(self):
+#         return self.__b
+
+#     @b.setter
+#     def b(self, value):
+#         if self.check_value(value):
+#             self.__b = value
+#         else:
+#             raise ValueError("габаритные размеры должны быть положительными числами")
+
+#     @property
+#     def c(self):
+#         return self.__c
+
+#     @c.setter
+#     def c(self, value):
+#         if self.check_value(value):
+#             self.__c = value
+#         else:
+#             raise ValueError("габаритные размеры должны быть положительными числами")
+
+#     def __hash__(self):
+#         return hash((self.a, self.b, self.c))
+    
+#     def __eq__(self, other):
+#         return hash(self) == hash(other)
+    
+#     def __ge__(self, other):
+#         return hash(self) >= hash(other)
+    
+#     def __lt__(self, other):
+#         return hash(self) < hash(other)
+    
+#     def __str__(self):
+#         return f'a={self.a}, b={self.b}, c={self.c}'
+    
+# s_inp = input()  # эту строку (переменную s_inp) в программе не менять
+
+# num = [[float(x) for x in (nums.split())] for nums in s_inp.split(';')]
+
+# lst_dims = [] 
+# for coord in num:
+#     try:
+#         d = Dimensions(*coord)
+#         lst_dims.append(d)
+#     except ValueError:
+#         pass
+    
+# lst_dims.sort()
