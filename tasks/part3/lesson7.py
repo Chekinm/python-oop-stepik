@@ -38,39 +38,55 @@
 
 # task 5
 
-import sys
+# import sys
 
 
-class MailItem:
+# class MailItem:
 
-    def __init__(self, mail_from, title, content):
-        self.mail_from = mail_from
-        self.title = title
-        self.content = content
-        self.is_read = False
+#     def __init__(self, mail_from, title, content):
+#         self.mail_from = mail_from
+#         self.title = title
+#         self.content = content
+#         self.is_read = False
 
-    def set_read(self, fl_read):
-        self.is_read = fl_read
+#     def set_read(self, fl_read):
+#         self.is_read = fl_read
 
-    def __bool__(self):
-        return self.is_read
-
-
-class MailBox:
-
-    def __init__(self):
-        self.inbox_list = []
-
-    def receive(self):
-        lst_in = list(map(str.strip, sys.stdin.readlines()))
-        for line in lst_in:
-            self.inbox_list.append(MailItem(*line.split('; ')))
+#     def __bool__(self):
+#         return self.is_read
 
 
-mail = MailBox()
+# class MailBox:
 
-mail.receive()
-mail.inbox_list[0].set_read(True)
-mail.inbox_list[-1].set_read(True)
+#     def __init__(self):
+#         self.inbox_list = []
 
-inbox_list_filtered = list(filter(bool, mail.inbox_list))
+#     def receive(self):
+#         lst_in = list(map(str.strip, sys.stdin.readlines()))
+#         for line in lst_in:
+#             self.inbox_list.append(MailItem(*line.split('; ')))
+
+
+# mail = MailBox()
+
+# mail.receive()
+# mail.inbox_list[0].set_read(True)
+# mail.inbox_list[-1].set_read(True)
+
+# inbox_list_filtered = list(filter(bool, mail.inbox_list))
+
+# # task 6
+
+# class Line:
+
+#     def __init__(self, x1, y1, x2, y2):
+#         self.x1 = x1
+#         self.y1 = y1
+#         self.x2 = x2
+#         self.y2 = y2
+#         self.line_length = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
+
+
+#     def __len__(self):
+#         return int(self.line_length)
+
