@@ -215,3 +215,82 @@
 #         pass
     
 # lst_dims.sort()
+
+# # task 10
+
+
+# from typing import Any
+
+
+# class Side:
+
+#     def __set_name__(self, owner, name):
+#         self.name = f'_{owner.__name__}__{name}'
+
+#     def __get__(self, instance, owner):
+#         return getattr(instance, self.name, None)
+
+#     def __set__(self, instance, value):
+#         setattr(instance, self.name, value)
+
+#     def __del__(self):
+#         pass
+
+
+# class PositiveSide(Side):
+
+#     def __set__(self, instance, value):
+#         if not isinstance(value, (int, float)) or value <= 0:
+#             raise ValueError("длины сторон треугольника должны быть положительными числами")
+#         super().__set__(instance, value)
+        
+            
+
+# class Triangle:
+
+#     a = PositiveSide()
+#     b = PositiveSide()
+#     c = PositiveSide()
+
+#     @staticmethod
+#     def is_triangle(a, b, c):
+#         if a and b and c:
+#             return all((a < (b + c),
+#                         b < (a + c),
+#                         c < (a + b),
+#                         ))
+#         return True
+
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+
+#     def __setattr__(self, name, value):
+#         if (name == 'a' and not self.is_triangle(value, self.b, self.c)) or \
+#                 (name == 'b' and not self.is_triangle(self.a, value, self.c)) or \
+#                 (name == 'c' and not self.is_triangle(self.a, self.b, value)):
+#             raise ValueError("с указанными длинами нельзя образовать треугольник")
+#         else:
+#             super().__setattr__(name, value)
+
+
+#     @property
+#     def perimeter(self):
+#         return self.a + self.b + self.c
+
+#     def __call__(self, *args, **kwds):
+#         p = self.perimeter / 2
+#         return (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+
+#     def __len__(tr):
+#         return int(perimeter)
+
+# tre = Triangle(100, 1, 1.414)
+
+
+
+tre.a = 1.1
+
+
+

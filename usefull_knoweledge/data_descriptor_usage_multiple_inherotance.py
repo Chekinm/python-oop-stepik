@@ -51,7 +51,6 @@ class Positive(Desc):
     def __set__(self, instance, value):
         print(' ** __set__ form Positive')
         if value < 0:
-
             raise ValueError('Value should be positive')
         super().__set__(instance, value)
 
