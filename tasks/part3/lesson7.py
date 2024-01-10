@@ -90,3 +90,44 @@
 #     def __len__(self):
 #         return int(self.line_length)
 
+
+# task 7
+
+
+# class Ellipse :
+
+#     def __init__(self, *args):
+#         if args and len(args) == 4:
+#             x1, x2, y1, y2 = args
+#             self.x1 = x1
+#             self.y1 = y1
+#             self.x2 = x2
+#             self.y2 = y2
+#             self.is_described = True
+#         else:
+#             self.is_described = False
+            
+#     def __bool__(self):
+#         return self.is_described
+
+#     def __str__(self):
+#         if self:
+#             return "no coordinate"
+#         else:
+#             return f'{self.x1}, {self.y1}, {self.x2}, {self.y2}'
+    
+#     def get_coords(self):
+#         try:
+#             return (self.x1, self.x2, self.x2, self.y2)
+#         except AttributeError:
+#             raise AttributeError('нет координат для извлечения')
+        
+
+# lst_geom = [Ellipse(), Ellipse(1, 2, 3, 4), Ellipse(), Ellipse(10, 20, 30, 40)]
+
+# for elip in lst_geom:
+#     if elip:
+#         elip.get_coords()
+
+
+# task 9
