@@ -189,75 +189,91 @@
 # print(t[1, 2])
 
 
-# task 6
+# # task 6
 
-class StackObj:
+# class StackObj:
 
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
 
-class Stack:
+# class Stack:
 
-    def __init__(self):
-        self.top = None
-        self.length = 0
+#     def __init__(self):
+#         self.top = None
+#         self.length = 0
         
-    def __len__(self):
-        return self.length
+#     def __len__(self):
+#         return self.length
 
-    def push(self, st_obj):
-        st_obj.next = self.top
-        self.top = st_obj
-        self.length += 1
+#     def push(self, st_obj):
+#         st_obj.next = self.top
+#         self.top = st_obj
+#         self.length += 1
 
-    def pop(self):
-        res = self.top
-        self.top = self.top.next
-        self.length -= 1
-        return res
+#     def pop(self):
+#         res = self.top
+#         self.top = self.top.next
+#         self.length -= 1
+#         return res
 
-    def __getitem__(self, ind):
-        if isinstance(ind, int) and 0 <= ind < self.length:
-            res = self.top
-            for i in range(self.length - 1, ind, -1):
-                res = res.next
-            return res
-        else:
-            raise IndexError('неверный индекс') 
+#     def __getitem__(self, ind):
+#         if isinstance(ind, int) and 0 <= ind < self.length:
+#             res = self.top
+#             for i in range(self.length - 1, ind, -1):
+#                 res = res.next
+#             return res
+#         else:
+#             raise IndexError('неверный индекс') 
         
-    def __setitem__(self, ind, new_obj):
-        if isinstance(ind, int) and 0 <= ind < self.length:
-            res = self.top
-            for i in range(self.length - 1, ind, -1):
-                res = res.next
-            res.data = new_obj.data
-        else:
-            raise IndexError('неверный индекс') 
+#     def __setitem__(self, ind, new_obj):
+#         if isinstance(ind, int) and 0 <= ind < self.length:
+#             res = self.top
+#             for i in range(self.length - 1, ind, -1):
+#                 res = res.next
+#             res.data = new_obj.data
+#         else:
+#             raise IndexError('неверный индекс') 
         
 
-st = Stack()
-st.push(StackObj("obj11"))
-st.push(StackObj("obj12"))
-st.push(StackObj("obj13"))
-st[1] = StackObj("obj2-new")
-assert st[0].data == "obj11" and st[1].data == "obj2-new", "атрибут data объекта класса StackObj содержит неверные данные"
+# st = Stack()
+# st.push(StackObj("obj11"))
+# st.push(StackObj("obj12"))
+# st.push(StackObj("obj13"))
+# st[1] = StackObj("obj2-new")
+# assert st[0].data == "obj11" and st[1].data == "obj2-new", "атрибут data объекта класса StackObj содержит неверные данные"
 
-try:
-    obj = st[3]
-except IndexError:
-    assert True
-else:
-    assert False, "не сгенерировалось исключение IndexError"
+# try:
+#     obj = st[3]
+# except IndexError:
+#     assert True
+# else:
+#     assert False, "не сгенерировалось исключение IndexError"
 
-obj = st.pop()
-assert obj.data == "obj13", "метод pop должен удалять последний объект стека и возвращать его"
+# obj = st.pop()
+# assert obj.data == "obj13", "метод pop должен удалять последний объект стека и возвращать его"
 
-n = 0
-h = st.top
-while h:
-    assert isinstance(h, StackObj), "объект стека должен быть экземпляром класса StackObj"
-    n += 1
-    h = h.next
-print(n)
-assert n == 2, "неверное число объектов в стеке (возможно, нарушена его структура)"
+# n = 0
+# h = st.top
+# while h:
+#     assert isinstance(h, StackObj), "объект стека должен быть экземпляром класса StackObj"
+#     n += 1
+#     h = h.next
+# print(n)
+# assert n == 2, "неверное число объектов в стеке (возможно, нарушена его структура)"
+
+# # task 7
+
+# class RadiusVector:
+
+#     def __init__(self, *coords):
+#         self.coords = list(coords)
+
+#     def __getitem__(self, ind):
+#         res = self.coords[ind]
+#         return res if isinstance(res, int) else tuple(res)
+
+#     def __setitem__(self, ind, value):
+#         self.coords[ind] = value
+
+# task 8 
