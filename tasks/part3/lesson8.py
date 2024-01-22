@@ -121,6 +121,143 @@
 # a = Array(20, cell=Integer)
 # print(a[18]), "начальные значения в ячейках массива (в объектах класса Integer) должны быть равны 0"
 
-# task 5
+# # task 5
 
-class 
+# class IntegerValue:
+
+#     def __set_name__(self, owner, name):
+#         self.name = f'_{owner.__name__}__{name}'
+
+#     def __get__(self, instance, owner=None):
+#         if instance is not None:
+#             return getattr(instance, self.name)
+#         return None
+
+#     def __set__(self, instance, value):
+#         if isinstance(value, int):
+#             setattr(instance, self.name, value)
+#         else:
+#             raise ValueError('возможны только целочисленные значения')
+
+#     def __delete__(self, instance):
+#         if instance is not None:
+#             delattr(instance, self.name)
+#         return None
+
+
+# class CellInteger:
+#     value = IntegerValue()
+
+#     def __init__(self, start_value=0):
+#         self.value = start_value
+
+#     def __str__(self):
+#         return str(self.value)
+
+
+
+
+# class TableValues:
+    
+#     def __init__(self, rows, cols, cell=None):
+#         if cell is not None:
+#             self.cells = tuple([tuple([cell() for i in range(cols)]) for j in range(rows)])
+
+#         else:
+#             raise ValueError('параметр cell не указан')
+        
+#     def __getitem__(self, ind):
+#         row, col = ind
+#         try:
+#             return self.cells[row][col].value
+#         except IndexError:
+#             raise IndexError('one of index is out of range')
+    
+#     def __setitem__(self, ind, value):
+#         row, col = ind
+#         try:
+#             self.cells[row][col].value = value
+#         except IndexError:
+#             raise IndexError('one of index is out of range')
+
+
+
+# a = CellInteger(5)
+# print(a.value)
+# t = TableValues(4, 3, cell=CellInteger)
+# t[1, 2] = 10
+# print(t[1, 2])
+
+
+# task 6
+
+class StackObj:
+
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+
+    def __init__(self):
+        self.top = None
+        self.length = 0
+        
+    def __len__(self):
+        return self.length
+
+    def push(self, st_obj):
+        st_obj.next = self.top
+        self.top = st_obj
+        self.length += 1
+
+    def pop(self):
+        res = self.top
+        self.top = self.top.next
+        self.length -= 1
+        return res
+
+    def __getitem__(self, ind):
+        if isinstance(ind, int) and 0 <= ind < self.length:
+            res = self.top
+            for i in range(self.length - 1, ind, -1):
+                res = res.next
+            return res
+        else:
+            raise IndexError('неверный индекс') 
+        
+    def __setitem__(self, ind, new_obj):
+        if isinstance(ind, int) and 0 <= ind < self.length:
+            res = self.top
+            for i in range(self.length - 1, ind, -1):
+                res = res.next
+            res.data = new_obj.data
+        else:
+            raise IndexError('неверный индекс') 
+        
+
+st = Stack()
+st.push(StackObj("obj11"))
+st.push(StackObj("obj12"))
+st.push(StackObj("obj13"))
+st[1] = StackObj("obj2-new")
+assert st[0].data == "obj11" and st[1].data == "obj2-new", "атрибут data объекта класса StackObj содержит неверные данные"
+
+try:
+    obj = st[3]
+except IndexError:
+    assert True
+else:
+    assert False, "не сгенерировалось исключение IndexError"
+
+obj = st.pop()
+assert obj.data == "obj13", "метод pop должен удалять последний объект стека и возвращать его"
+
+n = 0
+h = st.top
+while h:
+    assert isinstance(h, StackObj), "объект стека должен быть экземпляром класса StackObj"
+    n += 1
+    h = h.next
+print(n)
+assert n == 2, "неверное число объектов в стеке (возможно, нарушена его структура)"
