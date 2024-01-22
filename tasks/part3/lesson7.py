@@ -130,5 +130,83 @@
 #         elip.get_coords()
 
 
-# task 8
+# task 9
 
+class Vector:
+
+    def __init__(self, *coords):
+        self.coords = list(coords)
+        self.dim = len(coords)
+    
+    def __add__(self, other):
+        if self.dim == other.dim:
+            return Vector(*tuple(map(lambda x, y: x + y, self.coords, other.coords)))
+        else:
+            raise ArithmeticError('размерности векторов не совпадают')
+
+    def __sub__(self, other):
+        if self.dim == other.dim:
+            return Vector(*tuple(map(lambda x, y: x - y, self.coords, other.coords)))
+        else:
+            raise ArithmeticError('размерности векторов не совпадают')
+
+    def __mul__(self, other):
+        if self.dim == other.dim:
+            return Vector(*tuple(map(lambda x, y: x * y, self.coords, other.coords)))
+        else:
+            raise ArithmeticError('размерности векторов не совпадают')
+
+    def __iadd__(self, other):
+        if isinstance(other, Vector):
+            if self.dim == other.dim:
+                for i in range(self.dim):
+                    self.coords[i] += other.coords[i]
+                return self
+            else:
+                raise ArithmeticError('размерности векторов не совпадают')
+        for i in range(self.dim):
+            self.coords[i] += other
+        return self
+    
+    def __isub__(self, other):
+        if isinstance(other, Vector):
+            if self.dim == other.dim:
+                for i in range(self.dim):
+                    self.coords[i] -= other.coords[i] 
+                return self
+            else:
+                raise ArithmeticError('размерности векторов не совпадают')
+        for i in range(self.dim):
+            self.coords[i] -= other
+        return self
+    
+    def __imul__(self, other):
+        if isinstance(other, Vector):
+            if self.dim == other.dim:
+                for i in range(self.dim):
+                    self.coords[i] *= other.coords[i] 
+                return self
+            else:
+                raise ArithmeticError('размерности векторов не совпадают')
+        for i in range(self.dim):
+            self.coords[i] *= other
+        return self
+
+    def __eq__(self, other):
+        if self.dim != other.dim:
+            return False
+        for i in range(self.dim):
+            if self.coords[i] != other.coords[i]:
+                return False
+        return True
+            
+            
+
+
+
+a = Vector(1, 2, 3)
+b = Vector(10, 20, 30)
+c = a + b
+c -= a
+
+print(c == a)
