@@ -54,5 +54,73 @@
 #         except IndexError:
 #             raise IndexError('некорректный индекс')
 
-# task 4
+# # task 4
 
+# class Integer:
+
+#     def __init__(self, value=0):
+#         self.value = value
+
+#     @property
+#     def value(self):
+#         return self.__value
+    
+#     @value.setter
+#     def value(self, value):
+#         if isinstance(value, int):
+#             self.__value = value
+#         else:
+#             raise ValueError('должно быть целое число')
+    
+#     def __str__(self):
+#         return str(self.value)
+
+
+# class Array:
+
+#     def __init__(self, max_length, cell=Integer):
+#         self.array = [cell() for _ in range(max_length)]
+#         self.max_length = max_length
+    
+#     def __len__(self):
+#         return self.max_length
+    
+#     def __getitem__(self, ind):
+#         if 0 <= ind <= self.max_length:
+#             return self.array[ind].value
+#         else:
+#             raise IndexError('неверный индекс для доступа к элементам массива')
+    
+#     def __setitem__(self, ind, value):
+#         if 0 <= ind <= self.max_length:
+#             self.array[ind].value = value 
+#         else:
+#             raise IndexError('неверный индекс для доступа к элементам массива')
+    
+#     def __str__(self):
+#         return ' '.join((str(self.array[i]) for i in range(self.max_length)))
+
+
+# a = Integer(5)
+# print(a)
+# ar_int = Array(10, cell=Integer)
+# print(ar_int[3])
+# print(ar_int) # должны отображаться все значения массива в одну строчку через пробел
+# ar_int[1] = 10
+# try:
+#     ar_int[1] = 10.5 # должно генерироваться исключение ValueError
+# except ValueError as e:
+#     print(e)
+# try:
+#     ar_int[10] = 1 # должно генерироваться исключение ValueError
+# except IndexError as e:
+#     print(e)
+
+# print(ar_int)
+
+# a = Array(20, cell=Integer)
+# print(a[18]), "начальные значения в ячейках массива (в объектах класса Integer) должны быть равны 0"
+
+# task 5
+
+class 
