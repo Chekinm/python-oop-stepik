@@ -333,3 +333,96 @@
 # a[1, 2] = 1
 # a[2, 2] = 2
 # print(a[:, 2])
+
+# # task 9
+
+# class Bag:
+
+#     def __init__(self, max_weight):
+#         self.max_weight = max_weight
+#         self.total_weight = 0
+#         self.bag = []
+
+#     def add_thing(self, thing):
+#         if self.total_weight + thing.weight <= self.max_weight:
+#             self.bag.append(thing)
+#             self.total_weight += thing.weight
+#         else:
+#             raise ValueError('превышен суммарный вес предметов')
+
+#     def _check_index(self, ind):
+#         if not (isinstance(ind, int) and 0 <= ind < len(self.bag)):
+#             raise IndexError('неверный индекс')
+
+#     def __getitem__(self, ind):
+#         self._check_index(ind)
+#         return self.bag[ind]
+
+#     def __setitem__(self, ind, thing):
+#         self._check_index(ind)
+#         new_weight = self.total_weight - self.bag[ind].weight + thing.weight
+#         if new_weight <= self.max_weight:
+#             self.bag[ind] = thing
+#             self.total_weight = new_weight
+#         else:
+#             raise ValueError('превышен суммарный вес предметов')
+
+#     def __delitem__(self, ind):
+#         self._check_index(ind)
+#         thing = self.bag.pop(ind)
+#         self.total_weight -= thing.weight
+
+
+# class Thing:
+
+#     def __init__(self, name, weight):
+#         self.name = name
+#         self.weight = weight
+
+
+# b = Bag(700)
+# print(b.total_weight, b.max_weight)
+# b.add_thing(Thing('книга', 100))
+# print(b.total_weight, b.max_weight)
+
+# b.add_thing(Thing('носки', 200))
+
+# try:
+#     b.add_thing(Thing('рубашка', 500))
+# except ValueError:
+#     assert True
+# else:
+#     assert False, "не сгенерировалось исключение ValueError"
+
+# assert b[0].name == 'книга' and b[0].weight == 100, "атрибуты name и weight объекта класса Thing принимают неверные значения"
+
+# t = Thing('Python', 20)
+# b[1] = t
+# assert b[1].name == 'Python' and b[1].weight == 20, "неверные значения атрибутов name и weight, возможно, некорректно работает оператор присваивания с объектами класса Thing"
+
+# del b[0]
+# assert b[0].name == 'Python' and b[0].weight == 20, "некорректно отработал оператор del"
+
+# try:
+#     t = b[2]
+# except IndexError:
+#     assert True
+# else:
+#     assert False, "не сгенерировалось исключение IndexError"
+
+# task 10
+
+    
+b = Bag(700)
+b.add_thing(Thing('книга', 100))
+b.add_thing(Thing('носки', 200))
+
+b[0] = Thing('рубашка', 500)
+
+try:
+    b[0] = Thing('рубашка', 800)
+except ValueError:
+    assert True
+else:
+    assert False, "не сгенерировалось исключение ValueError при замене предмета в объекте класса Bag по индексу"
+
