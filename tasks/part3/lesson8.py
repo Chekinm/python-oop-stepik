@@ -276,4 +276,60 @@
 #     def __setitem__(self, ind, value):
 #         self.coords[ind] = value
 
-# task 8 
+# # task 8 
+
+# class Cell:
+
+#     def __init__(self, ):
+#         self.is_free = True
+#         self.value = 0
+
+#     def __bool__(self):
+#         return self.is_free
+    
+    
+# class TicTacToe:
+
+#     def __init__(self):
+#         self.pole = [[Cell() for j in range(3)] for i in range(3)]
+
+
+#     def clear(self):
+#         for row in self.pole:
+#             for cell in row:
+#                 cell.value = 0
+#                 cell.is_free = True
+
+#     @staticmethod
+#     def _check_ind(*ind):
+#         for num in ind:
+#             if not (0 <= num <= 2):
+#                 raise IndexError('неверный индекс клетки')
+
+#     def __getitem__(self, ind):
+#         if isinstance(ind[0], slice):
+#             sl, num = ind
+#             self._check_ind(num)
+#             return tuple([self.pole[i][num].value for i in range(3)])
+
+#         elif isinstance(ind[1], slice):
+#             num, sl = ind
+#             self._check_ind(num)
+#             return tuple([self.pole[num][i].value for i in range(3)])
+#         else:
+#             row, col = ind
+#             self._check_ind(col, row)
+#             return self.pole[row][col].value
+
+#     def __setitem__(self, ind, value):
+#         row, col = ind
+#         self._check_ind(col, row)
+#         if self.pole[row][col]:
+#             self.pole[row][col].value = value
+#         else:
+#             raise ValueError('клетка уже занята')
+        
+# a = TicTacToe()
+# a[1, 2] = 1
+# a[2, 2] = 2
+# print(a[:, 2])
