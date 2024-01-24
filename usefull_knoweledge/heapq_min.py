@@ -109,3 +109,4 @@ st.remove_data(12,12)
 print(heappop(st.rows_list))
 print(heappop(st.rows_list))
 print(heappop(st.rows_list))
+
