@@ -9,3 +9,5 @@ def pi_function(s):
             j += 1
         pi[i] = j
     return pi
+
+print(pi_function('asd@asdfffffasd'))
