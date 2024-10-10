@@ -1,14 +1,37 @@
-class Book:
-    def __init__(self, title, author, pages, year) -> None:
-        self.title = title
+class Thing:
+
+    def __init__(self, name: str, weight: float) -> None:
+        self.name = name
+        self.weight = weight
+
+
+class ArtObject(Thing):
+    def __init__(self, name: str, weight: float, author: str, date: str) -> None:
+        super().__init__(name, weight)
         self.author = author
-        self.pages = pages
-        self.year = year
+        self.date = date
 
 
-class DigitBook(Book):
-    def __init__(self, title, author, pages, year, size, frm):
-        super().__init__(title, author, pages, year)
-        self.size = size
-        self.frm = frm
+class Computer(Thing):
+    def __init__(self, name: str, weight: float, memory: int, cpu: str) -> None:
+        super().__init__(name, weight)
+        self.memory = memory
+        self.cpu = cpu
 
+class Auto(Thing):
+    def __init__(self, name: str, weight: float, dims: tuple) -> None:
+        super().__init__(name, weight)
+        self.dims = dims
+
+
+class Mercedes(Auto):
+    def __init__(self, name: str, weight: float, dims: tuple, model: str, old: int) -> None:
+        super().__init__(name, weight, dims)
+        self.model = model
+        self.old = old
+
+class Toyota(Auto):
+    def __init__(self, name: str, weight: float, dims: tuple, model: str, wheel: bool) -> None:
+        super().__init__(name, weight, dims)
+        self.model = model
+        self.wheel = wheel
