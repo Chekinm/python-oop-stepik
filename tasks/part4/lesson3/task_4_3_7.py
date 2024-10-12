@@ -16,7 +16,6 @@ def integer_params_decorated(method):
             if type(value) != 'int':
                 raise TypeError("аргументы должны быть целыми числами")
         return method(self, *args, **kwargs)
-    
 
     return wraped
 
