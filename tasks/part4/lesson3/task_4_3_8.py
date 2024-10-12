@@ -6,6 +6,3 @@ class SoftList(list):
             return False
         else:
             return self[idx]
-
-a = SoftList((1,2,3))
-print(a[0])
